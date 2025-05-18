@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon/logo.ico" type="image/x-icon">
+            <!-- 1. Classic ICO format (for legacy IE and older browsers) -->
+            <link rel="shortcut icon" href="./favicon/logo.ico" type="image/x-icon"/>
+            <!-- 2. PNG format (modern browsers, supports transparency) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="32x32" type="image/png"/>
+            <link rel="icon" href="./favicon/logo.png" sizes="16x16" type="image/png"/>
+            <!-- 3. High-resolution PNG (for high-DPI devices) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="96x96" type="image/png"/>
+            <!-- 4. Apple Touch Icon (for iOS home screen shortcut) -->
+            <link rel="apple-touch-icon" href="./favicon/logo.png" sizes="180x180"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+    <title>Science Museum - CultureNight</title>
+    <link rel="stylesheet" href="./css/styles.css">
+      
+</head>
+<body>
+  <!-- ============ HEADER & Navigation (与index一致) ============ -->
+  <header class="site-header">
+    <div class="container header-top">
+        <!--  Hamburger toggle checkbox -->
+        <input type="checkbox" id="nav-toggle" class="nav-checkbox" hidden>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+      <!-- logo -->          
+      <a href="index.html" class="logo" aria-label="Science Museum Home">
+        <img src="/images/logo-science-museum.jpg" alt="Science Museum logo">
+      </a>
+
+<!-- nav -->
+        <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+            <li class="nav-item">
+            <a href="#" class="nav-link">Exhibits</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Current Exhibitions</a></li>
+                <li><a href="#">Galleries</a></li>
+                <li><a href="#">Hands-on Zones</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Events</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Today at the Museum</a></li>
+                <li><a href="#">Workshops</a></li>
+                <li><a href="#">Family Events</a></li>
+                <li><a href="#">Special Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+            <a href="#" class="nav-link">More Information <span class="arrow">▾</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Visit Us</a></li>
+                <li><a href="#">Tickets & Membership</a></li>
+                <li><a href="#">For Schools</a></li>
+                <li><a href="#">Accessibility</a></li>
+            </ul>
+            </li>
+        </ul>
+        </nav>
+
+
+          <!-- header icons -->
+          <div class="header-actions">
+            <div class="header-icon language-dropdown">
+              <a href="#" class="header-icon">
+                <i class="fa-solid fa-globe"></i>
+                <span>Language</span></a>
+              <ul class="lang-menu">
+                <li><a href="#">English</a></li>
+                <li><a href="#">Norsk</a></li>
+              </ul>
+            </div>
+            <a href="#" class="header-icon"><i class="fa-solid fa-user"></i> <span>Login / Register</span></a>
+            <a href="#" class="header-icon"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
+          </div>          
+      </div>
+    </header>
+    <!-- ================= End Header & Navigation ============== -->
+
+    <nav class="breadcrumb-bar" aria-label="Breadcrumb">   <!-- white strip ======= -->
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Culture Night</li>
+      </ol>
+    </nav>
+
+  </header>
+
+  <main>
+ 
+    <main>
+        <!-- ================= Culture Night Hero ================= -->
+        <section class="culture-night-hero">
+          <div class="hero-bg">
+            <img
+              src="./images/site-hall.jpg"
+              alt="Museum dome background"
+            />
+          </div>
+          <div class="hero-content container">
+            <h1>Join Us for Culture Night!</h1>
+            <p class="subhead">
+              RSVP now to secure your spot for an unforgettable evening of art
+              and science!
+            </p>
+            <div class="hero-cta">
+              <a href="#" class="btn btn-primary">RSVP</a>
+              <a href="#" class="btn btn-outline">Learn More</a>
+            </div>
+          </div>
+        </section>
+    
+        <!-- ============= Feature Section ============= -->
+        <section class="feature-section">
+          <div class="container feature-intro">
+            <div class="feature-image">
+              <img
+                src="./images/exhibit-art.jpg"
+                alt="Painting with VR"
+              />
+            </div>
+            <div class="feature-text">
+              <h2>The Fusion of Art and Technology</h2>
+              <p>
+                Join us every 26th of the month for Culture Night, where art meets
+                technology in exciting, interactive ways. Families and children
+                can explore hands-on science experiences that inspire creativity
+                and curiosity.
+              </p>
+              <div class="feature-highlights">
+                <div>
+                  <strong>Art</strong>
+                  <p>Discover the beauty of science through creativity.</p>
+                </div>
+                <div>
+                  <strong>Tech</strong>
+                  <p>Engage with innovative technology in fun ways.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+    
+       <!-- ============= Explore the Wonders ============= -->
+<section class="explore-wonders">
+    <div class="container">
+      <h2 class="section-title">Uncover Unique, Hands-On Experiences</h2>
+      <p class="section-sub">
+        Step into a world of innovation, curiosity, and interactive discovery.
+      </p>
+  
+      <div class="feature-cards">
+        <!-- 第一个卡片：左右分栏 -->
+        <article class="card card-large">
+          <div class="card-content">
+            <h3>Virtual Reality</h3>
+            <p class="card-title">See Science Come Alive</p>
+            <p class="card-desc">
+              Dive into VR and hands-on exhibits designed to engage minds of every age. Experience in 360°.
+            </p>
+          </div>
+          <div class="card-image">
+            <img src="./images/exhibit-virtual-experience.jpg" alt="Visitor wearing VR headset" />
+          </div>
+        </article>
+  
+        <!-- 第二个卡片 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="./images/exhibit-brain.jpg" alt="Anatomical model inside museum" />
+          </div>
+          <div class="card-content">
+            <p class="card-label">Human Anatomy</p>
+            <h3 class="card-title">The Mind Inside</h3>
+            <p class="card-desc">
+              Join our workshops and science camps for kids.
+            </p>
+          </div>
+        </article>
+  
+        <!-- 第三个卡片 -->
+        <article class="card">
+          <div class="card-image">
+            <img src="./images/exhibit-human-heart.jpg" alt="Heart anatomy display" />
+          </div>
+          <div class="card-content">
+            <p class="card-label">Special Events</p>
+            <h3 class="card-title">Heart Lab</h3>
+            <p class="card-desc">
+              Anatomy in Detail. Where Science Meets Art.
+            </p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+    
+        <!-- ============= Lunar Phase Banner ============= -->
+        <section class="lunar-phases">
+          <div class="container">
+            <img
+              src="./images/exhibit-moon.jpg"
+              alt="Phases of the Moon"
+            />
+          </div>
+        </section>
+    
+        <!-- ============= Natural History Exhibit ============= -->
+        <section class="history-exhibit">
+          <div class="container history-content">
+            <div>
+              <h2>Discover Our Natural History Exhibit!</h2>
+              <p>
+                Step back in time as you explore our fascinating fossil displays
+                and ancient artifacts. This exhibit brings history to life,
+                making it perfect for curious minds of all ages.
+              </p>
+              <ul class="history-features">
+                <li>
+                  <strong>Fossil Displays</strong>
+                  <p>See real dinosaur bones and learn about prehistoric life!</p>
+                </li>
+                <li>
+                  <strong>Ancient Artifacts</strong>
+                  <p>
+                    Uncover the stories behind ancient civilizations and their
+                    remarkable creations.
+                  </p>
+                </li>
+              </ul>
+            </div>
+            <div class="history-image">
+              <img
+                src="./images/exhibit-nature-evolution.jpg"
+                alt="Natural history skeleton display"
+              />
+            </div>
+          </div>
+        </section>
+    
+       <!-- ============= Schedule ============= -->
+<section class="schedule">
+    <!-- Intro 保留 container -->
+    <div class="container schedule-intro">
+      <img src="./images/logo.jpg" alt="Science Museum logo">
+      <h2>Schedule</h2>
+      <p>Join us for a night of creativity and innovation at our monthly Culture Night!</p>
+    </div>
+    <!-- 把 container 放到 ul 外面，ul 只做 grid 容器 -->
+    <div class="container">
+      <ul class="schedule-list">
+        <li>
+          <span class="time">6:00 pm</span>
+          <span class="event-title">The Fusion of Art and Technology</span>
+          <span class="tags"><em>Art</em> <em>Tech</em></span>
+          <span class="role">Artist</span>
+          <span class="location">Gallery</span>
+          <a href="#" class="btn-outline-sm">View details</a>
+        </li>
+        <li>
+          <span class="time">7:00 pm</span>
+          <span class="event-title">Tech Showcase</span>
+          <span class="tags"><em>Online</em></span>
+          <span class="role">Speaker</span>
+          <span class="location">Lab</span>
+          <a href="#" class="btn-outline-sm">View details</a>
+        </li>
+        <li>
+          <span class="time">8:00 am</span>
+          <span class="event-title">Interactive Workshop</span>
+          <span class="tags"><em>In-person</em></span>
+          <span class="role">Instructor</span>
+          <span class="location">Studio</span>
+          <a href="#" class="btn-outline-sm">View details</a>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+    <!-- ===================== Footer ========================== -->
+    <footer class="site-footer">
+        <div class="container footer-wrapper">
+            <div class="footer-left">
+                <div class="footer-social">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-logo">
+                  <a href="/index.html" aria-label="Go to homepage" title="Back to Home">
+                    <img src="./images/logo-science-museum.jpg" alt="Science Museum Logo">
+                  </a>
+                  </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                    <small>Stay updated with our latest exhibits and events!</small>
+                </form>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>ABOUT THE MUSEUM</h4>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Smooth visit</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Donations to Non-profits</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#">Exhibit Services</a></li>
+                            <li><a href="#">Exhibit Rental</a></li>
+                            <li><a href="#">Evaluation & Learning Research</a></li>
+                            <li><a href="#">Party</a></li>
+                            <li><a href="#">Media Room</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect with us</h4>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- =================== End Footer ======================== -->
+</body>
+</html>

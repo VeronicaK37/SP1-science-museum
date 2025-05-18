@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon/logo.ico" type="image/x-icon">
+            <!-- 1. Classic ICO format (for legacy IE and older browsers) -->
+            <link rel="shortcut icon" href="./favicon/logo.ico" type="image/x-icon"/>
+            <!-- 2. PNG format (modern browsers, supports transparency) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="32x32" type="image/png"/>
+            <link rel="icon" href="./favicon/logo.png" sizes="16x16" type="image/png"/>
+            <!-- 3. High-resolution PNG (for high-DPI devices) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="96x96" type="image/png"/>
+            <!-- 4. Apple Touch Icon (for iOS home screen shortcut) -->
+            <link rel="apple-touch-icon" href="./favicon/logo.png" sizes="180x180"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+    <title>Science Museum - Homepage</title>
+    <link rel="stylesheet" href="./css/styles.css">
+      
+</head>
+<body>
+    <!-- ================= Header & Navigation ================= -->
+    <header class="site-header">
+        <div class="container header-top">
+          <!-- logo -->
+          <a href="index.html" class="logo" aria-label="Home">
+            <img src="./images/logo-science-museum.jpg" alt="Science Museum Logo">
+          </a>
+      
+          <!-- 抽屉开关：移动端显示 -->
+          <input
+            type="checkbox"
+            id="nav-toggle"
+            class="nav-checkbox"
+            aria-label="Toggle navigation"
+            hidden
+          >
+          <label
+            for="nav-toggle"
+            class="nav-toggle-label"
+            tabindex="0"
+            aria-label="Open menu"
+          >
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+          </label>
+      
+          <!-- header icons -->
+          <div class="header-actions">
+            <div class="header-icon language-dropdown">
+              <a href="#" class="header-icon" aria-haspopup="true">
+                <i class="fa-solid fa-globe" aria-hidden="true"></i>
+                <span class="header-icon-label">Language</span>
+              </a>
+              <ul class="lang-menu">
+                <li><a href="#">English</a></li>
+                <li><a href="#">Norsk</a></li>
+              </ul>
+            </div>
+            <a href="#" class="header-icon">
+              <i class="fa-solid fa-user" aria-hidden="true"></i>
+              <span>Login / Register</span>
+            </a>
+            <a href="#" class="header-icon">
+              <i class="fa-regular fa-heart" aria-hidden="true"></i>
+              <span>Wishlist</span>
+            </a>
+          </div>
+        </div>
+      
+        <!-- —— 桌面主导航 —— -->
+        <nav class="main-nav" aria-label="Main navigation">
+          <ul class="nav-menu">
+            <li class="nav-item">
+              <a href="#" class="nav-link">Exhibits</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Current Exhibitions</a></li>
+                <li><a href="#">Galleries</a></li>
+                <li><a href="#">Hands-on Zones</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Events</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Today at the Museum</a></li>
+                <li><a href="#">Workshops</a></li>
+                <li><a href="#">Family Events</a></li>
+                <li><a href="#">Special Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">
+                More Information <span class="arrow">▾</span>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Visit Us</a></li>
+                <li><a href="#">Tickets & Membership</a></li>
+                <li><a href="#">For Schools</a></li>
+                <li><a href="#">Accessibility</a></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      
+        <!-- —— 移动抽屉导航 —— -->
+        <nav class="mobile-nav-drawer" aria-label="Mobile Navigation">
+          <ul>
+            <li><a href="#">Exhibits</a></li>
+            <li><a href="#">Events</a></li>
+            <li><a href="#">More Information <span class="arrow">▾</span></a></li>
+          </ul>
+        </nav>
+      </header>
+    <!-- ================= End Header & Navigation ============== -->
+
+    <main>
+        <!-- ================= Hero Banner ======================= -->
+        <section class="hero-banner">
+            <img src="./images/site-enter.jpg" alt="Science Museum Building" class="hero-image">
+            <div class="hero-content">
+                <h1>Explore the Wonders of Science Together!</h1>
+                <p>
+                    Welcome to our interactive science museum, where curiosity meets fun! Discover hands-on exhibits and exciting activities designed for families and young explorers.
+                </p>
+                <div class="hero-buttons">
+                    <a href="/Explore.html" class="btn btn-primary">Explore</a>
+                    <a href="/signup.html" class="btn btn-secondary">Sign Up</a>
+                </div>
+            </div>
+        </section>
+        <!-- ================= End Hero Banner =================== -->
+
+        <!-- ================= Culture Night Highlight =========== -->
+        <section class="culture-night">
+            <div class="culture-night-bg">
+            </div>
+            <a href="culture-night.html" class="culture-night-button" aria-label="Go to Culture Night page">
+                All about Culture Night
+              </a>
+        </section>
+        <!-- ============ End Culture Night Highlight ============ -->
+
+        <!-- ==== Interactive Science Experience Promo =========== -->
+        <section class="interactive-experience">
+            <div class="experience-graphic">
+                <img src="./images/sketch-lab-vintage.jpg" alt="Science Instruments Graphic">
+            </div>
+            <div class="experience-description">
+                <h3>Ignite Curiosity Through Interactive Science Experiences</h3>
+                <p>
+                    Every 26th of each month, experience a night where art and technology merge at the Museum of Technology.
+                </p>
+            </div>
+        </section>
+        <!-- == End Interactive Science Experience Promo ========= -->
+
+        <!-- ==== Educational Programs / Features Section ======== -->
+        <section class="educational-programs">
+            <div class="container">
+                <h2>Engaging Educational Programs for All Ages</h2>
+                <p>
+                    Our interactive programs ignite curiosity and inspire learning. Designed for school groups and families, they offer hands-on experiences that make science fun.
+                </p>
+                <div class="feature-blocks">
+                    <a href="/culturenight.html" class="feature-link" target="_blank" rel="noopener">
+                      <article class="feature-block">
+                        <img src="./images/exhibit-robotics.jpg" alt="Workshops for School Groups">
+                        <h3>Workshops Tailored for School Groups</h3>
+                        <p>We offer tailored workshops that meet curriculum standards.</p>
+                      </article>
+                    </a>
+                    <a href="/culturenight.html" class="feature-link" target="_blank" rel="noopener">
+                      <article class="feature-block">
+                        <img src="./images/exhibit-natural-whale.jpg" alt="Family Friendly Activities">
+                        <h3>Family-Friendly Science Activities</h3>
+                        <p>Join us for exciting family activities every weekend.</p>
+                      </article>
+                    </a>
+                    <a href="/culturenight.html" class="feature-link" target="_blank" rel="noopener">
+                      <article class="feature-block">
+                        <img src="./images/exhibit-mineral.jpg" alt="Exhibits for All Visitors">
+                        <h3>Exhibits for All Visitors</h3>
+                        <p>Experience our exhibits that encourage exploration and discovery.</p>
+                      </article>
+                    </a>
+                  </div>
+            </div>
+        </section>
+        <!-- == End Educational Programs / Features Section ====== -->
+    </main>
+
+    <!-- ===================== Footer ========================== -->
+    <footer class="site-footer">
+        <div class="container footer-wrapper">
+            <div class="footer-left">
+                <div class="footer-social">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-logo">
+                  <a href="/index.html" aria-label="Go to homepage" title="Back to Home">
+                    <img src="./images/logo-science-museum.jpg" alt="Science Museum Logo">
+                  </a>
+                  </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                    <small>Stay updated with our latest exhibits and events!</small>
+                </form>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>ABOUT THE MUSEUM</h4>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Smooth visit</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Donations to Non-profits</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#">Exhibit Services</a></li>
+                            <li><a href="#">Exhibit Rental</a></li>
+                            <li><a href="#">Evaluation & Learning Research</a></li>
+                            <li><a href="#">Party</a></li>
+                            <li><a href="#">Media Room</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect with us</h4>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- =================== End Footer ======================== -->
+</body>
+</html>

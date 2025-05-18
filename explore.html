@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon/logo.ico" type="image/x-icon">
+            <!-- 1. Classic ICO format (for legacy IE and older browsers) -->
+            <link rel="shortcut icon" href="./favicon/logo.ico" type="image/x-icon"/>
+            <!-- 2. PNG format (modern browsers, supports transparency) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="32x32" type="image/png"/>
+            <link rel="icon" href="./favicon/logo.png" sizes="16x16" type="image/png"/>
+            <!-- 3. High-resolution PNG (for high-DPI devices) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="96x96" type="image/png"/>
+            <!-- 4. Apple Touch Icon (for iOS home screen shortcut) -->
+            <link rel="apple-touch-icon" href="./favicon/logo.png" sizes="180x180"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+    <title>Science Museum - Explore</title>
+    <link rel="stylesheet" href="./css/styles.css">
+      
+</head>
+<body>
+  <!-- ============ HEADER & Navigation (与index一致) ============ -->
+  <header class="site-header">
+    <div class="container header-top">
+        <!--  Hamburger toggle checkbox -->
+        <input type="checkbox" id="nav-toggle" class="nav-checkbox" hidden>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+      <!-- logo -->          
+      <a href="index.html" class="logo" aria-label="Science Museum Home">
+        <img src="/images/logo-science-museum.jpg" alt="Science Museum logo">
+      </a>
+
+<!-- nav -->
+        <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+            <li class="nav-item">
+            <a href="#" class="nav-link">Exhibits</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Current Exhibitions</a></li>
+                <li><a href="#">Galleries</a></li>
+                <li><a href="#">Hands-on Zones</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Events</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Today at the Museum</a></li>
+                <li><a href="#">Workshops</a></li>
+                <li><a href="#">Family Events</a></li>
+                <li><a href="#">Special Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+            <a href="#" class="nav-link">More Information <span class="arrow">▾</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Visit Us</a></li>
+                <li><a href="#">Tickets & Membership</a></li>
+                <li><a href="#">For Schools</a></li>
+                <li><a href="#">Accessibility</a></li>
+            </ul>
+            </li>
+        </ul>
+        </nav>
+
+
+          <!-- header icons -->
+          <div class="header-actions">
+            <div class="header-icon language-dropdown">
+              <a href="#" class="header-icon">
+                <i class="fa-solid fa-globe"></i>
+                <span>Language</span></a>
+              <ul class="lang-menu">
+                <li><a href="#">English</a></li>
+                <li><a href="#">Norsk</a></li>
+              </ul>
+            </div>
+            <a href="#" class="header-icon"><i class="fa-solid fa-user"></i> <span>Login / Register</span></a>
+            <a href="#" class="header-icon"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
+          </div>          
+      </div>
+    </header>
+    <!-- ================= End Header & Navigation ============== -->
+
+    <nav class="breadcrumb-bar" aria-label="Breadcrumb">   <!-- ===负责整条白色横条及间距 ======= -->
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Explore</li>
+      </ol>
+    </nav>
+
+  </header>
+
+  <main>
+    <!-- =========== HERO SECTION =========== -->
+    <section class="explore-hero">
+      <img src="/images/web-neural-visualization.jpg" alt="neural visualization picture" class="explore-hero-bg" aria-hidden="true">
+      <div class="explore-hero-content">
+        <span class="section-label">Explore</span>
+        <h1>Discover Our Exciting Exhibit Categories</h1>
+        <p>Dive into the wonders of science with our interactive exhibit hub. Each category offers a unique experience that sparks curiosity and learning.</p>
+        <ul class="explore-categories">
+          <li><span class="category-title">Interactive Science</span> <span class="category-desc">Engage in experiments that make science come alive.</span></li>
+          <li><span class="category-title">Natural History</span> <span class="category-desc">Explore the fascinating world of dinosaurs and ecosystems.</span></li>
+          <li><span class="category-title">Space Exploration</span> <span class="category-desc">Explore the thrill of space travel and discovery.</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- =========== EXHIBIT CARDS =========== -->
+    <section class="explore-sections">
+      <div class="explore-section orange-bg">
+        <div class="explore-section-content">
+          <h2>Explore the Wonders of Our Interactive Science Exhibit!</h2>
+          <p>Delve into a world of discovery with hands-on activities that spark curiosity. Our interactive science exhibit offers engaging experiences that educate and inspire young minds.</p>
+        </div>
+        <div class="explore-section-image">
+          <img src="/images/exhibit-lab.jpg" alt="Interactive Science Exhibit">
+        </div>
+      </div>
+
+      <div class="explore-section dark-bg">
+        <div class="explore-section-content">
+          <h2>Discover Our Natural History Exhibit!</h2>
+          <p>Step back in time as you explore our fascinating fossil displays and ancient artifacts. This exhibit brings history to life, making it perfect for curious minds of all ages.</p>
+          <div class="explore-features-row">
+            <div class="explore-feature">
+              <strong>Fossil Displays</strong>
+              <span>See real dinosaur bones and uncover prehistoric life!</span>
+            </div>
+            <div class="explore-feature">
+              <strong>Ancient Artifacts</strong>
+              <span>Uncover the stories behind ancient civilizations and old-world trade cultures.</span>
+            </div>
+          </div>
+        </div>
+        <div class="explore-section-image">
+          <img src="/images/exhibit-nature-mammoth.jpg" alt="Natural History Exhibit">
+        </div>
+      </div>
+
+      <div class="explore-section orange-bg reverse">
+        <div class="explore-section-content">
+          <span class="section-label">Explore</span>
+          <h2>Journey Through the Space</h2>
+          <p>Step into our Space Exploration exhibit hall and embark on an unforgettable journey through the cosmos. Discover stunning planetarium shows and hands-on science events that will ignite your imagination.</p>
+          <div class="explore-actions">
+            <a href="#" class="btn btn-primary">Learn More</a>
+            <a href="#" class="btn btn-secondary">Sign Up</a>
+          </div>
+        </div>
+        <div class="explore-section-image">
+          <img src="/images/exhibit-cosmos.jpg" alt="Space Exploration Exhibit">
+        </div>
+      </div>
+    </section>
+
+    <!-- =========== MINI FEATURE GRID / EVENTS =========== -->
+    <section class="explore-events orange-bg">
+      <div class="container">
+      <h2 class="events-intro">
+        Explore Our Exciting Hands-On Exhibits<br>
+        for Young Scientists and Innovators!
+      </h2>
+      <div class="explore-mini-grid">
+        <div class="mini-feature">
+          <img src="/images/exhibit-cosmos.jpg" alt="Special Events">
+          <h3>Join Us for Special Events That Spark Curiosity and Fun!</h3>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+        <div class="mini-feature">
+          <img src="/images/exhibit-intelligence.jpg" alt="Educational Programs">
+          <h3>Educational Programs Designed to Ignite a Passion for Science!</h3>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+        <div class="mini-feature">
+          <img src="/images/exhibit-art.jpg" alt="Interactive Workshops">
+          <h3>Experience Interactive Learning with Our Engaging Workshops!</h3>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+
+      <div class="explore-mini-grid">
+        <div class="mini-feature">
+          <img src="/images/exhibit-insect-intelligence.jpg" alt="Bugged! Magnified Micro Worlds">
+          <h3>Bugged! Magnified Micro Worlds</h3>
+          <p>Dive into a world of discovery with interactive displays, like stinger and mites.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+        <div class="mini-feature">
+          <img src="/images/exhibit-lab.jpg" alt="Inside the Lab: Where Matter Meets Magic">
+          <h3>Inside the Lab: Where Matter Meets Magic</h3>
+          <p>Peek into real research environment. From particles to reactions, see science unfold before your eyes.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+        <div class="mini-feature">
+          <img src="/images/exhibit-brain.jpg" alt="The Thinking Machine: Explore the Brain">
+          <h3>The Thinking Machine: Explore the Brain</h3>
+          <p>Decode the puzzles of the human mind. Trace how neurons fire, thoughts form, and senses connect.</p>
+          <a href="#" class="btn btn-primary">Learn More</a>
+        </div>
+      </div>
+    </div>
+    </section>
+  </main>
+
+
+    <!-- ===================== Footer ========================== -->
+    <footer class="site-footer">
+        <div class="container footer-wrapper">
+            <div class="footer-left">
+                <div class="footer-social">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-logo">
+                  <a href="/index.html" aria-label="Go to homepage" title="Back to Home">
+                    <img src="./images/logo-science-museum.jpg" alt="Science Museum Logo">
+                  </a>
+                  </div>
+                  
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                    <small>Stay updated with our latest exhibits and events!</small>
+                </form>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>ABOUT THE MUSEUM</h4>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Smooth visit</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Donations to Non-profits</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#">Exhibit Services</a></li>
+                            <li><a href="#">Exhibit Rental</a></li>
+                            <li><a href="#">Evaluation & Learning Research</a></li>
+                            <li><a href="#">Party</a></li>
+                            <li><a href="#">Media Room</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect with us</h4>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- =================== End Footer ======================== -->
+</body>
+</html>

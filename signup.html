@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="./favicon/logo.ico" type="image/x-icon">
+            <!-- 1. Classic ICO format (for legacy IE and older browsers) -->
+            <link rel="shortcut icon" href="./favicon/logo.ico" type="image/x-icon"/>
+            <!-- 2. PNG format (modern browsers, supports transparency) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="32x32" type="image/png"/>
+            <link rel="icon" href="./favicon/logo.png" sizes="16x16" type="image/png"/>
+            <!-- 3. High-resolution PNG (for high-DPI devices) -->
+            <link rel="icon" href="./favicon/logo.png" sizes="96x96" type="image/png"/>
+            <!-- 4. Apple Touch Icon (for iOS home screen shortcut) -->
+            <link rel="apple-touch-icon" href="./favicon/logo.png" sizes="180x180"/>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+
+    <title>Science Museum - SignUp</title>
+    <link rel="stylesheet" href="./css/styles.css">
+      
+</head>
+<body>
+  <!-- ============ HEADER & Navigation (与index一致) ============ -->
+  <header class="site-header">
+    <div class="container header-top">
+        <!--  Hamburger toggle checkbox -->
+        <input type="checkbox" id="nav-toggle" class="nav-checkbox" hidden>
+        <label for="nav-toggle" class="nav-toggle-label">
+            <i class="fa-solid fa-bars"></i>
+        </label>
+      <!-- logo -->          
+      <a href="index.html" class="logo" aria-label="Science Museum Home">
+        <img src="/images/logo-science-museum.jpg" alt="Science Museum logo">
+      </a>
+
+<!-- nav -->
+        <nav class="main-nav" aria-label="Main navigation">
+        <ul class="nav-menu">
+            <li class="nav-item">
+            <a href="#" class="nav-link">Exhibits</a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Current Exhibitions</a></li>
+                <li><a href="#">Galleries</a></li>
+                <li><a href="#">Hands-on Zones</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a href="#" class="nav-link">Events</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Today at the Museum</a></li>
+                <li><a href="#">Workshops</a></li>
+                <li><a href="#">Family Events</a></li>
+                <li><a href="#">Special Events</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+            <a href="#" class="nav-link">More Information <span class="arrow">▾</span></a>
+            <ul class="dropdown-menu">
+                <li><a href="#">Visit Us</a></li>
+                <li><a href="#">Tickets & Membership</a></li>
+                <li><a href="#">For Schools</a></li>
+                <li><a href="#">Accessibility</a></li>
+            </ul>
+            </li>
+        </ul>
+        </nav>
+
+
+          <!-- header icons -->
+          <div class="header-actions">
+            <div class="header-icon language-dropdown">
+              <a href="#" class="header-icon">
+                <i class="fa-solid fa-globe"></i>
+                <span>Language</span></a>
+              <ul class="lang-menu">
+                <li><a href="#">English</a></li>
+                <li><a href="#">Norsk</a></li>
+              </ul>
+            </div>
+            <a href="#" class="header-icon"><i class="fa-solid fa-user"></i> <span>Login / Register</span></a>
+            <a href="#" class="header-icon"><i class="fa-regular fa-heart"></i> <span>Wishlist</span></a>
+          </div>          
+      </div>
+    </header>
+    <!-- ================= End Header & Navigation ============== -->
+
+    <nav class="breadcrumb-bar" aria-label="Breadcrumb">   <!-- ===负责整条白色横条及间距 ======= -->
+      <ol class="breadcrumb">
+        <li><a href="index.html">Home</a></li>
+        <li aria-current="page">Sign Up</li>
+      </ol>
+    </nav>
+
+  </header>
+
+  <main>
+  <!-- ================= Sign-Up Hero ================= -->
+  <section class="sign-up-hero">
+    <div class="hero-bg">
+      <img src="./images/exhibit-neural-visualization.jpg" alt="Abstract network background">
+    </div>
+    <div class="hero-content">
+      <h1>Join Our Exciting Community!</h1>
+      <p>Stay updated with our latest news, events, and science discoveries tailored just for you!</p>
+      <form class="sign-up-form" action="#" method="post" novalidate>
+        <label for="email-signup" class="visually-hidden">Your email address</label>
+        <input
+          id="email-signup"
+          type="email"
+          name="email"
+          placeholder="Your Email Here"
+          required
+        >
+        <button type="submit" class="btn btn-primary">Join Now</button>
+      </form>
+      <p class="form-note">
+        By clicking Join Now, you agree to our <a href="#">Terms and Conditions</a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============= Adventure Steps ============= -->
+  <section class="adventure">
+    <div class="adventure-intro">
+      <img src="./images/logo.jpg" alt="Science Museum Logo">
+      <h2>Your Adventure Awaits</h2>
+      <p>Planning your visit is easy and fun!<br>
+         Follow our simple steps to ensure an unforgettable experience.</p>
+    </div>
+    <div class="adventure-steps">
+      <article class="step">
+        <img src="./images/site-enter.jpg" alt="Purchase tickets online">
+        <h3>Step 1: Purchase Your Tickets Online</h3>
+        <p>Secure your spot by buying tickets in advance.</p>
+      </article>
+      <article class="step">
+        <img src="./images/site-library.jpg" alt="Check exhibit schedules">
+        <h3>Step 2: Check Exhibit Schedules</h3>
+        <p>Explore our website for the latest exhibit times.</p>
+      </article>
+      <article class="step">
+        <img src="./images/site-nature.jpg" alt="Visitor tips">
+        <h3>Step 3: Visitor Tips for a Great Experience</h3>
+        <p>Pack snacks, wear comfortable shoes, and enjoy!</p>
+      </article>
+    </div>
+    <div class="adventure-cta">
+      <a href="#" class="btn btn-outline">Sign Up</a>
+      <a href="/explore.html" class="btn btn-link">Learn More <span class="arrow">▸</span></a>
+    </div>
+  </section>
+
+  <!-- ============= Testimonial ============= -->
+  <section class="testimonial">
+    <div class="stars">
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+      <i class="fa-solid fa-star"></i>
+    </div>
+    <blockquote>
+      “Visiting the museum was a fantastic experience! I learned so much while having fun!”
+    </blockquote>
+    <div class="author">
+      <img src="./images/collage-reading.jpg" alt="Emil Adam">
+      <cite>Emil Adam</cite>
+    </div>
+  </section>
+</main>
+
+
+    <!-- ===================== Footer ========================== -->
+    <footer class="site-footer">
+        <div class="container footer-wrapper">
+            <div class="footer-left">
+                <div class="footer-social">
+                    <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="#" title="Twitter"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                </div>
+                <div class="footer-logo">
+                  <a href="/index.html" aria-label="Go to homepage" title="Back to Home">
+                    <img src="./images/logo-science-museum.jpg" alt="Science Museum Logo">
+                  </a>
+                  </div>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                    <small>Stay updated with our latest exhibits and events!</small>
+                </form>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>ABOUT THE MUSEUM</h4>
+                        <ul>
+                            <li><a href="#">About us</a></li>
+                            <li><a href="#">Smooth visit</a></li>
+                            <li><a href="#">Contact us</a></li>
+                            <li><a href="#">Careers</a></li>
+                            <li><a href="#">Donations to Non-profits</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Explore</h4>
+                        <ul>
+                            <li><a href="#">Exhibit Services</a></li>
+                            <li><a href="#">Exhibit Rental</a></li>
+                            <li><a href="#">Evaluation & Learning Research</a></li>
+                            <li><a href="#">Party</a></li>
+                            <li><a href="#">Media Room</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h4>Connect with us</h4>
+                        <ul>
+                            <li><a href="#">Facebook</a></li>
+                            <li><a href="#">Twitter</a></li>
+                            <li><a href="#">Instagram</a></li>
+                            <li><a href="#">LinkedIn</a></li>
+                            <li><a href="#">YouTube</a></li>
+                            <li><a href="#">Newsletter</a></li>
+                            <li><a href="#">Contact Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- =================== End Footer ======================== -->
+</body>
+</html>

@@ -1,0 +1,956 @@
+/* ──────────────────────────────────────────────────────────────────
+   1. RESET & GLOBAL
+   ────────────────────────────────────────────────────────────────── */
+   *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #ffffff;
+    color: #111;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2vw;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     2. VARIABLES
+     ────────────────────────────────────────────────────────────────── */
+  :root {
+    --header-bg: #111;
+    --header-fg: #fff;
+    --header-fg-secondary: #ccc;
+    --header-height: 94px;
+    --focus-ring: 0 0 0 3px #f4e041;
+    /* culturenight extra added variables: */
+    --black: #111;
+    --white: #fff;
+    --blue: #294aff;
+    --orange: #dc7612;
+    --text-large: 2.5rem;
+    --text-medium: 1rem;
+    --text-small: 0.9rem;
+    --radius: 12px;
+    --gap: 2rem;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     3. HEADER (desktop & mobile-first)
+     ────────────────────────────────────────────────────────────────── */
+  .site-header {
+    background: #111;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    position: relative;
+    z-index: 999;
+  }
+  .site-header .header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* three sections: left, center, right */
+    min-height: 94px;
+    padding: 0;
+  }
+  
+  /* Logo section */
+  .logo {
+    order: 1;
+    flex: 0 0 auto;
+  }
+  .main-nav {
+    order: 2;
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+  .logo img {
+    height: 64px;
+    width: auto;
+  }
+  
+  /* Hamburger (visible on mobile only) */
+  .nav-checkbox {
+    display: none;
+  }
+  .nav-toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .nav-toggle-label:focus {
+    outline: 0 0 0 3px #f4e041;
+  }
+  
+  /* Main nav (mobile-first: drawer hidden by default) */
+  .main-nav {
+    position: absolute;
+    top: 94px;
+    left: 0;
+    right: 0;
+    background: #111;
+    padding: 24px 2vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .nav-checkbox:checked ~ .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+  .nav-link .arrow {
+    margin-left: 0.25em;
+  }
+  
+  /* dropdown-menu for main nav */
+  /* Highlight current menu item */
+  .nav-item.current > .nav-link {
+    color: #8bff7f;              /* bright green text */
+  }
+  .nav-item.current > .nav-link::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #7a3cff;  /* purple underline */
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+  
+  /* also highlight on hover */
+  .nav-item:hover > .nav-link {
+    color: #8bff7f;
+  }
+  .nav-item:hover > .nav-link::after {
+    background-color: #7a3cff;
+  }
+  
+  /* dropdown menu overall style */
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: rgba(245,245,245,0.9); /* semi-transparent gray-white */
+    backdrop-filter: blur(4px);        /* slight frosted-glass effect */
+    padding: 16px 0;
+    border-radius: 12px;               /* rounded corners */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25); /* subtle shadow */
+    min-width: 240px;
+    z-index: 200;
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* dropdown item style */
+  .dropdown-menu li a {
+    display: block;
+    padding: 12px 24px;
+    color: #111;                /* dark text */
+    font-weight: 600;
+    font-size: 1.1rem;          /* slightly larger */
+    line-height: 1.4;
+    transition: background .2s;
+  }
+  .dropdown-menu li + li {
+    margin-top: 8px;
+  }
+  
+  /* background darkens on hover/focus */
+  .dropdown-menu li a:hover,
+  .dropdown-menu li a:focus {
+    background: rgba(0,0,0,0.05);
+  }
+  
+  /* show dropdown */
+  .nav-item:hover > .dropdown-menu,
+  .nav-item:focus-within > .dropdown-menu {
+    display: block;
+  }
+  
+  /* Header actions (right icon group) */
+  .header-actions {
+    order: 3;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    flex: 0 0 auto;
+  }
+  .header-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color .25s, transform .25s;
+  }
+  .header-icon:hover,
+  .header-icon:focus {
+    color: #99ff99;
+  }
+  .header-icon:hover i {
+    transform: scale(1.15) rotate(-8deg);
+  }
+  .header-icon:focus {
+    outline: 0 0 0 3px #f4e041;
+  }
+  
+  /* dropdown menu */
+  .language-dropdown {
+    position: relative;
+  }
+  .language-dropdown .lang-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #292929;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+  }
+  .language-dropdown:hover .lang-menu,
+  .language-dropdown:focus-within .lang-menu {
+    display: block;
+  }
+  .lang-menu li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  .lang-menu li a:hover {
+    background: #555;
+  }
+  
+  .mobile-nav-drawer {
+    display: none; /* unless checked */
+  }
+  
+  /* -------------------------------------------------------------- */
+  
+  /* ≥901px: desktop dropdown menu style */
+  @media (min-width: 901px) {
+    /* ensure each menu item is position:relative for dropdown */
+    .main-nav .nav-item {
+      position: relative;
+    }
+  
+    /* hide dropdown by default and set positioning & style */
+    .main-nav .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 100%;                  /* right below the menu text */
+      left: 0;                    /* align left to parent nav-item */
+      margin-top: 8px;            /* top margin to match prototype */
+      min-width: 220px;           /* adjustable based on content */
+      background: rgba(255,255,255,0.95); /* semi-transparent white */
+      backdrop-filter: blur(6px); /* background blur effect */
+      border-radius: 12px;        /* rounded corners */
+      padding: 16px 0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2); /* subtle shadow */
+      z-index: 200;
+    }
+  
+    /* show dropdown on hover or focus */
+    .main-nav .nav-item:hover > .dropdown-menu,
+    .main-nav .nav-item:focus-within > .dropdown-menu {
+      display: block;
+    }
+  
+    /* remove default margin */
+    .main-nav .dropdown-menu li {
+      margin: 0;
+    }
+    /* spacing between list items */
+    .main-nav .dropdown-menu li + li {
+      margin-top: 12px;
+    }
+    .main-nav .dropdown-menu li a {
+      display: block;
+      padding: 8px 24px;          /* larger horizontal padding for a better hit area */
+      font-size: 1rem;
+      font-weight: 700;
+      color: #111;
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .main-nav .dropdown-menu li a:hover,
+    .main-nav .dropdown-menu li a:focus {
+      background: rgba(0,0,0,0.05);
+    }
+  }
+  
+  /* -------------------------------------------------------------- */
+  @media (max-width: 900px) {
+    /* hide horizontal main nav on small screens */
+    .main-nav {
+      display: none;
+    }
+    /* Always ensure the checkbox is hidden */
+    .nav-checkbox {
+      display: none;
+      visibility: hidden;
+    }
+    /* Ensure the label is always visible */
+    .nav-toggle-label {
+      display: block;
+    }
+    /* show drawer nav when hamburger is checked */
+    .nav-checkbox:checked ~ .mobile-nav-drawer {
+      display: block;
+    }
+    /* optional: make drawer full screen */
+    .mobile-nav-drawer {
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      background: var(--header-bg);
+      padding: 1rem 2rem;
+    }
+  }
+  
+  /* ≥901px wide screens → three-section layout */
+  @media (min-width: 901px) {
+    /* hide hamburger */
+    .nav-toggle-label {
+      display: none;
+    }
+    /* restore main nav inline and visible */
+    .main-nav {
+      position: static;
+      opacity: 1;
+      pointer-events: auto;
+      padding: 0;
+      background: transparent;
+    }
+    .nav-menu {
+      flex-direction: row;
+      gap: 2.75rem;
+      justify-content: center;
+    }
+    /* final three-section order: logo → nav → actions */
+    .logo {
+      order: 1;
+    }
+    .main-nav {
+      order: 2;
+      flex: 0 0 auto;
+      margin: 0 auto;
+    }
+    .header-actions {
+      order: 3;
+      margin: 0;
+    }
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     6. HERO BANNER
+     ────────────────────────────────────────────────────────────────── */
+  .hero-banner {
+    position: relative;
+    color: white;
+    min-height: 650px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .hero-banner img.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    display: block;
+  }
+  .hero-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(51,51,51, .35);
+    z-index: 2;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 34px;
+  }
+  .hero-content h1 {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 22px;
+    text-shadow: 0 9px 30px rgba(0,0,0,.19);
+    letter-spacing: -1.5px;
+  }
+  .hero-content p {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 36px;
+    text-shadow: 0 3px 10px rgba(0,0,0,.13);
+    color: #f3f3f3;
+    max-width: 800px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+  }
+  .hero-buttons .btn {
+    padding: 12px 32px;
+    border-radius: 20px;
+    font-size: 19px;
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(0,0,0,.10);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background .14s ease, transform .18s ease;
+    margin-bottom: 5px;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background-color: #f4e041;
+    color: #222;
+  }
+  .btn-primary:hover {
+    background: #ffe053;
+    transform: scale(1.05);
+  }
+  .btn-secondary {
+    background: #fff;
+    color: #383838;
+  }
+  .btn-secondary:hover {
+    background: #ededed;
+    color: #383838;
+    transform: scale(1.04);
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     7. CULTURE NIGHT
+     ────────────────────────────────────────────────────────────────── */
+  .culture-night {
+    position: relative;
+    background: #000;
+    height: 340px; /* adjust if needed */
+    overflow: hidden;
+    text-align: center;
+  }
+  .culture-night::before,
+  .culture-night::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: #c87300; /* orange bar color */
+    z-index: 3;
+  }
+  .culture-night::before { top: 0; }
+  .culture-night::after  { bottom: 0; }
+  .culture-night-bg {
+    position:.absolute;
+    inset:0; /* equivalent to top:0;right:0;bottom:0;left:0 */
+    background:url("../images/exhibit-moon.jpg") center/contain no-repeat;
+    z-index: 1;
+  }
+  .culture-night-button {
+    position:absolute;
+    left:50%; bottom:34px; /* control distance from bottom */
+    transform: translateX(-50%);
+    z-index: 2;
+    display: inline-block;
+    padding: 14px 48px;
+    font:600 26px/1 'Montserrat',sans-serif;
+    color:#fff;
+    text-decoration:none;
+    background: linear-gradient(90deg,#5a3510,#704316);
+    border-radius:999px;
+    box-shadow:0 4px 18px rgba(0,0,0,.25);
+    transition: background .25s, transform .25s;
+  }
+  .culture-night-button:hover {
+    background: linear-gradient(90deg,#704316,#8a5520);
+    transform: translateX(-50%) scale(1.05);
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     8. INTERACTIVE EXPERIENCE
+     ────────────────────────────────────────────────────────────────── */
+  .interactive-experience {
+    background-color: #f7e8cd;
+    padding: 50px 0;
+    text-align: center;
+  }
+  .experience-graphic img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     9. EDUCATIONAL PROGRAMS / FEATURE BLOCKS
+     ────────────────────────────────────────────────────────────────── */
+  .educational-programs {
+    background-color: #dc7612;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: left;
+  }
+  .educational-programs .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .educational-programs h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .educational-programs p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  .feature-blocks {
+    display: flex;
+    gap: 36px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch; /* make all cards equal height */
+  }
+  .feature-link {
+    display: block;
+    max-width: 340px; /* consistent with design */
+    min-width: 280px;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 32px;
+    transition: box-shadow .26s ease, transform .19s ease, filter .18s ease;
+    outline: none;
+  }
+  .feature-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* allow to fill parent height */
+    min-height: 500px;
+    background: #fff;
+    border-radius: 32px;
+    padding: 0 0 22px;
+    box-shadow: 0 2px 9px 0 #0001;
+    overflow: hidden;
+    text-align: left;
+    min-width: 0;   /* note: prevent flex overflow */
+  }
+  .feature-block img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+    transition: filter .2s ease;
+    flex-shrink: 0;
+  }
+  .feature-block h3 {
+    font-size: 18px;
+    margin: 15px 0 10px;
+    color: #dc7612;
+    font-weight: 600;
+  }
+  .feature-block p {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  .feature-link:focus-visible,
+  .feature-link:hover {
+    outline: none;
+  }
+  .feature-link:focus-visible .feature-block,
+  .feature-link:hover .feature-block {
+    box-shadow: 0 8px 36px 0 #c67b0e45, 0 2px 8px 0 #0002;
+    transform: translateY(-4px) scale(1.03);
+    filter: brightness(1.09) saturate(1.12);
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     10. FOOTER
+     ────────────────────────────────────────────────────────────────── */
+  .site-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .footer-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .footer-left {
+    flex: 1.2;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer-social a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  .footer-logo img {
+    width: 160px;
+  }
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .newsletter-form input {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    width: 100%;
+  }
+  .newsletter-form button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  .newsletter-form small {
+    font-size: 14px;
+    color: #ccc;
+  }
+  .footer-links {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .footer-column h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-column ul li {
+    margin-bottom: 8px;
+  }
+  .footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  .footer-column ul li a:hover {
+    color: #fff;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     11. EXPLORE PAGE & BREADCRUMB (page-specific styles)
+     ────────────────────────────────────────────────────────────────── */
+  .breadcrumb-bar {
+    background: #fff;
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 42px;
+    padding-inline: 18px;
+    box-sizing: border-box;
+  }
+  .breadcrumb {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;          /* wrap on narrow screens */
+  }
+  .breadcrumb li {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .breadcrumb li+li::before {
+    content: "\f105";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    color: #999;
+    font-size: 11px;
+  }
+  .breadcrumb a {
+    color: #111;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .breadcrumb a:hover {
+    color: #007bff;
+  }
+  .breadcrumb [aria-current="page"] {
+    color: #000;
+    font-weight: 700;
+  }
+  
+  /* ≥901px: force main nav horizontal */
+  @media (min-width: 901px) {
+    /* hide hamburger */
+    .nav-checkbox,
+    .nav-toggle-label {
+      display: none !important;
+    }
+    /* make header-top a flex container */
+    .header-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    /* flex order: logo → main-nav → header-actions */
+    .logo {
+      order: 1;
+      flex: 0 0 auto;
+    }
+    .main-nav {
+      order: 2;
+      flex: 0 0 auto;       /* no extra flex space */
+      margin: 0 auto;
+      display: flex;
+      justify-content: center; /* center nav text */
+      position: static !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      background: transparent !important;
+      padding: 0 !important;
+    }
+    .header-actions {
+      order: 3;
+      flex: 0 0 auto;
+      margin-left: auto;
+    }
+    .nav-menu {
+      flex-direction: row !important;
+      gap: 44px;
+    }
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     12. MEDIA QUERIES (other sections responsive)
+     ────────────────────────────────────────────────────────────────── */
+  @media (max-width: 1020px) {
+    .feature-blocks, .explore-section {
+      flex-direction: column !important;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+    .feature-link {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .explore-mini-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .explore-section-content, .explore-section-image {
+      padding: 36px 2vw;
+      min-width: 220px;
+      max-width: none;
+    }
+    .explore-section-image img {
+      max-height: 290px;
+    }
+  }
+  @media (max-width: 900px) {
+    .nav-toggle-label, .nav-checkbox {
+      display: block;
+    }
+    .main-nav {
+      display: none;
+    }
+    .nav-checkbox:checked ~ .main-nav {
+      display: block;
+    }
+    .nav-menu {
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: #111;
+      padding: 20px;
+      gap: 20px;
+    }
+    .dropdown-menu {
+      position: static;
+      background: #222;
+      padding-left: 20px;
+    }
+    .header-top {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .header-actions {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 10px 20px;
+      gap: 15px;
+    }
+    .hero-content h1, .explore-hero-content h1 {
+      font-size: 36px;
+    }
+    .hero-content p, .explore-hero-комContent p {
+      font-size: 15px;
+    }
+    .hero-banner, .hero-banner img.hero-image, .explore-hero-bg {
+      min-height: 300px;
+    }
+    .hero-content, .explore-hero-content {
+      min-height: 300px;
+    }
+    .hero-buttons .btn, .explore-actions .btn {
+      font-size: 15px;
+      padding: 8px 15px;
+    }
+    .educational-programs {
+      text-align: center;
+    }
+    .educational-programs h2 {
+      font-size: 24px;
+    }
+    .explore-section-content, .explore-section-image {
+      padding: 28px 2vw;
+    }
+    .mini-feature {
+      max-width: 370px;
+    }
+  }
+  @media (max-width: 768px) {
+    .header-icon:hover {
+      transform: none;
+    }
+    .culture-night {
+      height: 220px;
+    }
+    .culture-night-button {
+      font-size: 15px;
+      padding: 8px 24px;
+      bottom: 15px;
+    }
+    .footer-wrapper, .footer-links {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-left {
+      align-items: center;
+    }
+    .newsletter-form button {
+      align-self: center;
+    }
+    .explore-section-image img {
+      max-height: 170px;
+    }
+    .mini-feature {
+      min-width: 155px;
+      max-width: 98vw;
+    }
+    .explore-hero-content h1 {
+      font-size: 22px;
+    }
+  }
+  @media (max-width: 600px) {
+    .hero-content h1, .explore-hero-content h1 {
+      font-size: 1.1rem;
+    }
+    .mini-feature img {
+      height: 48vw;
+      max-height: 104px;
+    }
+    .explore-section-content, .explore-section-image {
+      padding: 16px 1vw;
+    }
+    .feature-blocks, .explore-mini-grid {
+      gap: 10px;
+    }
+    .feature-link {
+      max-width: 99vw;
+    }
+    .footer-top, .footer-bottom {
+      padding: 20px;
+    }
+    .explore-section-image img {
+      max-height: 100px;
+    }
+    .mini-feature {
+      padding: 10px 2px;
+    }
+    .btn, .mini-feature .btn, .hero-buttons .btn {
+      font-size: 13px;
+      padding: 7px 12px;
+    }
+    .breadcrumb-bar {
+      font-size: 12px;
+      line-height: 36px;
+      padding-inline: 12px;
+    }
+  }
+  

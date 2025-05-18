@@ -1,0 +1,2524 @@
+/* ──────────────────────────────────────────────────────────────────
+   1. RESET & GLOBAL
+   ────────────────────────────────────────────────────────────────── */
+   *, *::before, *::after {
+    box-sizing: border-box;
+  }
+  html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+  body {
+    font-family: 'Montserrat', Arial, sans-serif;
+    background: #ffffff;
+    color: #111;
+  }
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2vw;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     2. VARIABLES
+     ────────────────────────────────────────────────────────────────── */
+  :root {
+    --header-bg: #111;
+    --header-fg: #fff;
+    --header-fg-secondary: #ccc;
+    --header-height: 94px;
+    --focus-ring: 0 0 0 3px #f4e041;
+/* culturenight extra added variables: */
+    --black: #111;
+    --white: #fff;
+    --blue: #294aff;
+    --orange: #dc7612;
+    --text-large: 2.5rem;
+    --text-medium: 1rem;
+    --text-small: 0.9rem;
+    --radius: 12px;
+    --gap: 2rem;
+  
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     3. HEADER (desktop & mobile-first)
+     ────────────────────────────────────────────────────────────────── */
+
+.site-header {
+    background: #111;
+    color: #fff;
+    border-bottom: 1px solid #333;
+    position: relative;
+    z-index: 999;
+  }
+  .site-header .header-top  {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /*justify-content */
+    min-height: 94px;
+    padding: 0;           
+  }
+  
+  /* Logo */
+  .logo {
+    order: 1;
+    flex: 0 0 auto;
+  }
+  .main-nav     { 
+    order: 2; flex: 0 0 auto; margin: 0 auto; 
+}
+  .logo img {
+    height: 64px;
+    width: auto;
+  }
+  
+  /* Hamburger （mobile）*/
+  .nav-checkbox {
+    display: none;
+  }
+  .nav-toggle-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px; height: 44px;
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    background: none;
+    border: none;
+  }
+  .nav-toggle-label:focus {
+    outline: 0 0 0 3px #f4e041;
+  }
+  
+  /* Primary navigation (mobile-first: default drawer hidden) */
+  .main-nav {
+    position: absolute;
+    top: 94px; left: 0; right: 0;
+    background: #111;
+    padding: 24px 2vw;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+
+  .nav-checkbox:checked ~ .main-nav {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .nav-menu {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1.35rem;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25em;
+  }
+  .nav-link .arrow { margin-left: 0.25em; }
+
+  /* dropdown-menu for main nav */
+  /* ─── Highlight the current menu item ─── */
+.nav-item.current > .nav-link {
+    color: #8bff7f;              /* Bright green text */
+  }
+  .nav-item.current > .nav-link::after {
+    content: "";
+    display: block;
+    height: 3px;
+    width: 100%;
+    background-color: #7a3cff;  /* purple underline */
+    margin-top: 4px;
+    border-radius: 2px;
+  }
+  
+  /* ─── Highlight when the mouse hovers ─── */
+  .nav-item:hover > .nav-link {
+    color: #8bff7f;
+  }
+  .nav-item:hover > .nav-link::after {
+    background-color: #7a3cff;
+  }
+  
+  /* ─── Drop-down menu overall style ─── */
+  .dropdown-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background: rgba(245,245,245,0.9); /* translucent gray */
+    backdrop-filter: blur(4px);        /* slightly frosted glass */
+    padding: 16px 0;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.25);
+    min-width: 240px;
+    z-index: 200;
+    display: none;
+    list-style: none;
+  margin: 0;
+  padding: 0;
+
+  }
+  
+  /* ─── drop-down item style ─── */
+  .dropdown-menu li a {
+    display: block;
+    padding: 12px 24px;
+    color: #111;      /* text */
+    font-weight: 600;
+    font-size: 1.1rem;        
+    line-height: 1.4;
+    transition: background .2s;
+  }
+  .dropdown-menu li + li {
+    margin-top: 8px;
+  }
+  
+  /* ─── Darker background on hover/focus ─── */
+  .dropdown-menu li a:hover,
+  .dropdown-menu li a:focus {
+    background: rgba(0,0,0,0.05);
+  }
+  
+  /* ─── Display drop-down ─── */
+  .nav-item:hover > .dropdown-menu,
+  .nav-item:focus-within > .dropdown-menu {
+    display: block;
+  }
+  
+  /* Header actions (Right Icon Group) */
+  .header-actions {
+    order: 3;
+    display: flex;
+    align-items: center;
+    gap: 1.4rem;
+    flex: 0 0 auto;
+  }
+  .header-icon {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color .25s, transform .25s;
+  }
+  .header-icon:hover,
+  .header-icon:focus {
+    color: #99ff99;
+  }
+  .header-icon:hover i {
+    transform: scale(1.15) rotate(-8deg);
+  }
+  .header-icon:focus {
+    outline: 0 0 0 3px #f4e041;
+  }
+  
+  /* Drop-down menu */
+  .language-dropdown { position: relative; }
+  .language-dropdown .lang-menu {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0;
+    background: #292929;
+    border-radius: 4px;
+    padding: 0.5rem 0;
+  }
+  .language-dropdown:hover .lang-menu,
+  .language-dropdown:focus-within .lang-menu {
+    display: block;
+  }
+  .lang-menu li a {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #fff;
+    text-decoration: none;
+  }
+  .lang-menu li a:hover { background: #555; }
+
+  .mobile-nav-drawer {
+    display: none; /* unless checked  */
+  }
+
+  /* -------------------------------------------------------------- */
+
+  /* —— 901px and above, desktop drop-down menu style —— */
+@media (min-width: 901px) {
+    /* Make sure each menu item is relatively positioned so that the absolute positioning below 
+    will take effect */
+    .main-nav .nav-item {
+      position: relative;
+    }
+  
+    /* Hide the drop-down by default and set the positioning and style */
+    .main-nav .dropdown-menu {
+      display: none;              /* Not displayed by default */
+      position: absolute;
+      top: 100%;                  /* Just below the menu text */
+      left: 0;                    /* Align left with parent nav-item */
+      margin-top: 8px;            /* Leave blank space at the top to fit the prototype */
+      min-width: 220px;           /* Adjustable according to content */
+      background: rgba(255,255,255,0.95);       /* Translucent white */
+      backdrop-filter: blur(6px);               /* Background blur */
+      border-radius: 12px;        
+      padding: 16px 0;            
+      box-shadow: 0 4px 16px rgba(0,0,0,0.2);     /* Soft Shadows */
+      z-index: 200;               /* Make sure it is on top */
+    }
+  
+    /* Display drop-down on hover or focus */
+    .main-nav .nav-item:hover > .dropdown-menu,
+    .main-nav .nav-item:focus-within > .dropdown-menu {
+      display: block;
+    }
+  
+    /* Drop-down list item style */
+    .main-nav .dropdown-menu li {
+      margin: 0;                  /* Remove default spacing */
+    }
+    .main-nav .dropdown-menu li + li {
+      margin-top: 12px;           /* Spacing between lists */
+    }
+    .main-nav .dropdown-menu li a {
+      display: block;
+      padding: 8px 24px;          /* Larger left and right margins, more friendly click area */
+      font-size: 1rem;
+      font-weight: 700;           /* Highlight title */
+      color: #111;                /* Dark text */
+      text-decoration: none;
+      transition: background 0.2s ease;
+    }
+    .main-nav .dropdown-menu li a:hover,
+    .main-nav .dropdown-menu li a:focus {
+      background: rgba(0,0,0,0.05);
+    }
+  }
+/* -------------------------------------------------------------- */
+  @media (max-width: 900px) {
+
+    /* 小屏隐藏横向主导航 */
+    .main-nav {
+      display: none;
+    }
+
+    /* Always ensure the checkbox is hidden */
+    .nav-checkbox {
+        display: none;
+        visibility: hidden;
+    }
+
+    /* Ensure the label is always visible */
+    .nav-toggle-label {
+        display: block;
+    }
+  
+    /* Small screen drawer navigation is still hidden initially */
+    .mobile-nav-drawer {
+      display: none;
+    }
+  
+    /* When the hamburger is selected (checkbox is checked), 
+    the drawer navigation is displayed */
+    .nav-checkbox:checked ~ .mobile-nav-drawer {
+      display: block;
+    }
+  
+    /* Optional: Make the drawer take up the full screen */
+    .mobile-nav-drawer {
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      width: 100%;
+      background: var(--header-bg);
+      padding: 1rem 2rem;
+    }
+  }
+
+  /* =========================================
+   ≥ 901px widescreen → three-section layout
+     ========================================= */
+  @media (min-width: 901px) {
+  
+    /* hide hamburger */
+    .nav-toggle-label { display: none; }
+  
+    /* The primary navigation is restored inline and visible */
+    .main-nav {
+      position: static;
+      opacity: 1;
+      pointer-events: auto;
+      padding: 0;
+      background: transparent;
+    }
+    .nav-menu {
+      flex-direction: row;
+      gap: 2.75rem;
+      justify-content: center;
+    }
+  
+    /* Final three-stage sequence：logo → nav → actions */
+    .logo      { order: 1; }
+    .main-nav  { order: 2; flex: 0 0 auto; margin: 0 auto; }
+    .header-actions { order: 3; margin: 0; }
+  }
+
+  /* ──────────────────────────────────────────────────────────────────
+     6. HERO BANNER
+     ────────────────────────────────────────────────────────────────── */
+  .hero-banner {
+    position: relative;
+    color: white;
+    min-height: 650px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+  }
+  .hero-banner img.hero-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    display: block;
+  }
+  .hero-banner::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(51,51,51, .35);
+    z-index: 2;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 34px;
+  }
+  .hero-content h1 {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 22px;
+    text-shadow: 0 9px 30px rgba(0,0,0,.19);
+    letter-spacing: -1.5px;
+  }
+  .hero-content p {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 36px;
+    text-shadow: 0 3px 10px rgba(0,0,0,.13);
+    color: #f3f3f3;
+    max-width: 800px;
+  }
+  .hero-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+  }
+  .hero-buttons .btn {
+    padding: 12px 32px;
+    border-radius: 20px;
+    font-size: 19px;
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(0,0,0,.10);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background .14s ease, transform .18s ease;
+    margin-bottom: 5px;
+    text-decoration: none;
+  }
+  .btn-primary {
+    background-color: #f4e041;
+    color: #222;
+  }
+  .btn-primary:hover {
+    background: #ffe053;
+    transform: scale(1.05);
+  }
+  .btn-secondary {
+    background: #fff;
+    color: #383838;
+  }
+  .btn-secondary:hover {
+    background: #ededed;
+    color: #383838;
+    transform: scale(1.04);
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     7. CULTURE NIGHT
+     ────────────────────────────────────────────────────────────────── */
+  .culture-night {
+    position: relative;
+    background: #000;
+    height: 340px; /* adjust if needed */
+    overflow: hidden;
+    text-align: center;
+  }
+  .culture-night::before,
+  .culture-night::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: #c87300;
+    z-index: 3;
+  }
+  .culture-night::before { top: 0; }
+  .culture-night::after  { bottom: 0; }
+  .culture-night-bg {
+    position: absolute;
+    inset: 0;
+    background: url("../images/exhibit-moon.jpg") center/contain no-repeat;
+    z-index: 1;
+  }
+  .culture-night-button {
+    position: absolute;
+    left: 50%;
+    bottom: 34px;
+    transform: translateX(-50%);
+    z-index: 2;
+    display: inline-block;
+    padding: 14px 48px;
+    font: 600 26px/1 'Montserrat',sans-serif;
+    color: #fff;
+    text-decoration: none;
+    background: linear-gradient(90deg, #5a3510, #704316);
+    border-radius: 999px;
+    box-shadow: 0 4px 18px rgba(0,0,0,.25);
+    transition: background .25s ease, transform .25s ease;
+  }
+  .culture-night-button:hover {
+    background: linear-gradient(90deg, #704316, #8a5520);
+    transform: translateX(-50%) scale(1.05);
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     8. INTERACTIVE EXPERIENCE
+     ────────────────────────────────────────────────────────────────── */
+  .interactive-experience {
+    background-color: #f7e8cd;
+    padding: 50px 0;
+    text-align: center;
+  }
+  .experience-graphic img {
+    width: 100%;
+    margin-bottom: 0;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     9. EDUCATIONAL PROGRAMS / FEATURE BLOCKS
+     ────────────────────────────────────────────────────────────────── */
+  .educational-programs {
+    background-color: #dc7612;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: left;
+  }
+  .educational-programs .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .educational-programs h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  .educational-programs p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  .feature-blocks {
+    display: flex;
+    gap: 36px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .feature-link {
+    display: block;
+    max-width: 340px;
+    min-width: 280px;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 32px;
+    transition: box-shadow .26s ease, transform .19s ease, filter .18s ease;
+    outline: none;
+  }
+  .feature-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 500px;
+    background: #fff;
+    border-radius: 32px;
+    padding: 0 0 22px;
+    box-shadow: 0 2px 9px 0 #0001;
+    overflow: hidden;
+    text-align: left;
+  }
+  .feature-block img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+    transition: filter .2s ease;
+    flex-shrink: 0;
+  }
+  .feature-block h3 {
+    font-size: 18px;
+    margin: 15px 0 10px;
+    color: #dc7612;
+    font-weight: 600;
+  }
+  .feature-block p {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  .feature-link:focus-visible,
+  .feature-link:hover {
+    outline: none;
+  }
+  .feature-link:focus-visible .feature-block,
+  .feature-link:hover .feature-block {
+    box-shadow: 0 8px 36px 0 #c67b0e45, 0 2px 8px 0 #0002;
+    transform: translateY(-4px) scale(1.03);
+    filter: brightness(1.09) saturate(1.12);
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+     10. FOOTER
+     ────────────────────────────────────────────────────────────────── */
+  .site-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 0;
+    font-family: 'Montserrat', sans-serif;
+  }
+  .footer-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+  .footer-left {
+    flex: 1.2;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  .footer-social a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 12px;
+  }
+  .footer-logo img {
+    width: 160px;
+  }
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .newsletter-form input {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    width: 100%;
+  }
+  .newsletter-form button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  .newsletter-form small {
+    font-size: 14px;
+    color: #ccc;
+  }
+  .footer-links {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  .footer-column h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .footer-column ul li {
+    margin-bottom: 8px;
+  }
+  .footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  .footer-column ul li a:hover {
+    color: #fff;
+  }
+  
+  /* ──────────────────────────────────────────────────────────────────
+      EXPLORE PAGE & BREADCRUMB
+     ────────────────────────────────────────────────────────────────── */
+  /* Breadcrumb bar */
+  .breadcrumb-bar {
+    background: #fff;
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 42px;
+    padding-inline: 18px;
+    box-sizing: border-box;
+  }
+  .breadcrumb {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .breadcrumb li {
+    display: flex;
+    align-items: center;
+    color: #666;
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+  .breadcrumb li+li::before {
+    content: "\f105";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 10px;
+    color: #999;
+    font-size: 11px;
+  }
+  .breadcrumb a {
+    color: #111;
+    text-decoration: none;
+    transition: color .2s ease;
+  }
+  .breadcrumb a:hover {
+    color: #007bff;
+  }
+  .breadcrumb [aria-current="page"] {
+    color: #000;
+    font-weight: 700;
+  }
+  
+
+  
+  /* ———2. ≥901px widescreen: force the main navigation 
+  to be visible horizontally ——— */
+  @media (min-width: 901px) {
+    /* hide hamburger */
+    .nav-checkbox,
+    .nav-toggle-label {
+      display: none !important;
+    }
+
+    /* Unify header-top as flex container */
+    .header-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+    
+      /* flex sort by：logo → main-nav → header-actions */
+      .logo {
+        order: 1;
+        flex: 0 0 auto;
+      }
+      .main-nav {
+        order: 2;
+        flex: 0 0 auto;       /* No extra flex space */
+        margin: 0 auto;       /* Automatic horizontal centering */
+        display: flex;              
+        justify-content: center;    /* ← Center the navigation text in the available space */
+        /* Restore horizontally visible navigation */
+        position: static !important;
+        opacity: 1 !important;
+        pointer-events: auto !important;
+        display: flex !important;
+        background: transparent !important;
+        padding: 0 !important;
+      }
+      .header-actions {
+        order: 3;
+        flex: 0 0 auto;             /* No extra flex space */
+        margin-left: auto; 
+      }
+    
+    /* Ensure ul is arranged horizontally */
+      .nav-menu {
+        flex-direction: row !important;
+        gap: 44px;
+      }
+
+
+
+    /* /* Ensure ul is arranged horizontally */
+.nav-menu {
+    flex-direction: row !important;
+    gap: 44px;
+    }
+    
+    /* Main navigation is always visible, restore to normal layout */
+    .main-nav {
+    position: static !important;
+    inset: auto !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    display: flex !important;
+    background: transparent !important;
+    padding: 0 !important;
+    }
+    
+    /* UL is arranged horizontally */ */
+    .main-nav {
+      position: static !important;
+      inset: auto !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+      display: flex !important;
+      background: transparent !important;
+      padding: 0 !important;
+    }
+  
+    /* UL Horizontal arrangement */
+    .nav-menu {
+      flex-direction: row !important;
+      justify-content: center;
+      align-items: center;
+      gap: 44px;
+      background: none;
+      padding: 0;
+    }
+  
+    /* Each link keeps the button effect */
+    .nav-link {
+      display: inline-flex;
+    }
+  } 
+  /* ──────────────────────────────────────────────────────────────────
+     12. MEDIA QUERIES 
+     ────────────────────────────────────────────────────────────────── */
+  /* 1020px 以下：feature-blocks, explore-section -List vertical */
+  @media (max-width: 1020px) {
+    .feature-blocks, .explore-section {
+      flex-direction: column !important;
+      gap: 28px;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+    .feature-link {
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .explore-mini-grid {
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .explore-section-content, .explore-section-image {
+      padding: 36px 2vw;
+      min-width: 220px;
+      max-width: none;
+    }
+    .explore-section-image img {
+      max-height: 290px;
+    }
+  }
+
+  /* Below 900px: navigation collapsed, hero shrunk, programs centered */
+  @media (max-width: 900px) {
+    .nav-toggle-label, .nav-checkbox {
+      display: block;
+    }
+    .main-nav {
+      display: none;
+    }
+    .nav-checkbox:checked ~ .main-nav {
+      display: block;
+    }
+    .nav-menu {
+      flex-direction: column;
+      align-items: flex-start;
+      background-color: #111;
+      padding: 20px;
+      gap: 20px;
+    }
+    .dropdown-menu {
+      position: static;
+      background: #222;
+      padding-left: 20px;
+    }
+    .header-top {
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .header-actions {
+      width: 100%;
+      justify-content: flex-start;
+      padding: 10px 20px;
+      gap: 15px;
+    }
+    .hero-content h1, .explore-hero-content h1 {
+      font-size: 36px;
+    }
+    .hero-content p, .explore-hero-content p {
+      font-size: 15px;
+    }
+    .hero-banner, .hero-banner img.hero-image, .explore-hero-bg {
+      min-height: 300px;
+    }
+    .hero-content, .explore-hero-content {
+      min-height: 300px;
+    }
+    .hero-buttons .btn, .explore-actions .btn {
+      font-size: 15px;
+      padding: 8px 15px;
+    }
+    .educational-programs {
+      text-align: center;
+    }
+    .educational-programs h2 {
+      font-size: 24px;
+    }
+    .explore-section-content, .explore-section-image {
+      padding: 28px 2vw;
+    }
+    .mini-feature {
+      max-width: 370px;
+    }
+  }
+  /* Below 768px: footer is rearranged, culture-night is reduced */
+  @media (max-width: 768px) {
+    .header-icon:hover {
+      transform: none;
+    }
+    .culture-night {
+      height: 220px;
+    }
+    .culture-night-button {
+      font-size: 15px;
+      padding: 8px 24px;
+      bottom: 15px;
+    }
+    .footer-wrapper, .footer-links {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .footer-left {
+      align-items: center;
+    }
+    .newsletter-form button {
+      align-self: center;
+    }
+    .explore-section-image img {
+      max-height: 170px;
+    }
+    .mini-feature {
+      min-width: 155px;
+      max-width: 98vw;
+    }
+    .explore-hero-content h1 {
+      font-size: 22px;
+    }
+  }
+  /* Below 600px: Ultra-compact mobile version */
+  @media (max-width: 600px) {
+    .hero-content h1, .explore-hero-content h1 {
+      font-size: 1.1rem;
+    }
+    .mini-feature img {
+      height: 48vw;
+      max-height: 104px;
+    }
+    .explore-section-content, .explore-section-image {
+      padding: 16px 1vw;
+    }
+    .feature-blocks, .explore-mini-grid {
+      gap: 10px;
+    }
+    .feature-link {
+      max-width: 99vw;
+    }
+    .footer-top, .footer-bottom {
+      padding: 20px;
+    }
+    .explore-section-image img {
+      max-height: 100px;
+    }
+    .mini-feature {
+      padding: 10px 2px;
+    }
+    .btn, .mini-feature .btn, .hero-buttons .btn {
+      font-size: 13px;
+      padding: 7px 12px;
+    }
+    .breadcrumb-bar {
+      font-size: 12px;
+      line-height: 36px;
+      padding-inline: 12px;
+    }
+  }
+
+.hero-banner {
+    position: relative;
+    color: white;
+    min-height: 650px;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+.hero-banner img.hero-image {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    z-index: 1;
+    display: block;
+    min-height: 650px;
+}
+.hero-banner::after {
+    /*  semi-transparent black overlay */
+    content: "";
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(51,51,51, 0.35);
+    z-index: 2;
+}
+.hero-content {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 650px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 34px;
+}
+.hero-content h1 {
+    font-size: 72px;
+    font-weight: 900;
+    line-height: 1.08;
+    margin-bottom: 22px;
+    text-shadow: 0 9px 30px rgba(0,0,0,0.19);
+    letter-spacing: -1.5px;
+}
+.hero-content p {
+    font-size: 20px;
+    font-weight: 400;
+    margin-bottom: 36px;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.13);
+    color: #f3f3f3;
+    max-width: 800px;
+}
+.hero-buttons {
+    display: flex;
+    gap: 18px;
+    justify-content: center;
+}
+.hero-buttons .btn {
+    padding: 12px 32px;
+    border-radius: 20px;
+    font-size: 19px;
+    font-weight: 700;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    border: none;
+    cursor: pointer;
+    outline: none;
+    transition: background .14s, transform .18s;
+    margin-bottom: 5px;
+    text-decoration: none;
+}
+.btn-primary {
+    background-color: #f4e041;
+    color: #222;
+}
+.btn-primary:hover {
+    background: #ffe053;
+    transform: scale(1.05);
+}
+.btn-secondary {
+    background: #fff;
+    color: #383838;
+}
+.btn-secondary:hover {
+    background: #ededed;
+    color: #383838;
+    transform: scale(1.04);
+}
+
+/* prevent horizontal scroll */
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+  /* Culture Night */
+  .culture-night{
+    position:relative;
+    background:#000;
+    height:340px;                /* The image height can be fine-tuned as needed */
+    overflow:hidden;
+    text-align:center;
+  }
+  
+  /* orange bar */
+  .culture-night::before,
+  .culture-night::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;height:8px;
+    background:#c87300;         
+    z-index:3;
+  }
+  .culture-night::before{top:0;}
+  .culture-night::after {bottom:0;}
+  
+   /* background moon phase */
+  .culture-night-bg{
+    position:absolute;
+    inset:0;                     /*  top:0;right:0;bottom:0;left:0 */
+    background:url("../images/exhibit-moon.jpg") center/contain no-repeat;
+    z-index: 1;
+  }
+  
+  /*Rounded Corner Button */
+  .culture-night-button{
+    position:absolute;
+    left:50%;bottom:34px;         /* The distance between the control button and the bottom edge */
+    transform:translateX(-50%);
+    z-index:2;
+  
+    display:inline-block;
+    padding:14px 48px;
+    font:600 26px/1 'Montserrat',sans-serif;
+    color:#fff;text-decoration:none;
+    background:linear-gradient(90deg,#5a3510,#704316);
+    border-radius:999px;
+    box-shadow:0 4px 18px rgba(0,0,0,.25);
+    transition:background .25s,transform .25s;
+  }
+  .culture-night-button:hover{
+    background:linear-gradient(90deg,#704316,#8a5520);
+    transform:translateX(-50%) scale(1.05);
+  } 
+  
+  /* Interactive Experience */
+  .interactive-experience {
+    background-color: #f7e8cd;
+    padding: 50px 0;
+    text-align: center;
+  }
+  .experience-graphic img {
+    width: 100%;
+    margin-bottom: 0px;
+  }
+  
+  /* Educational Programs / Features Section */
+
+  .educational-programs {
+    background-color: #dc7612;
+    color: #fff;
+    padding: 60px 20px;
+    text-align: left;
+  }
+  
+  .educational-programs .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .educational-programs h2 {
+    font-size: 40px;
+    margin-bottom: 20px;
+  }
+  
+  .educational-programs p {
+    font-size: 18px;
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  
+/*Grid layout (suitable for three columns, etc.) */
+.feature-blocks {
+    display: flex;
+    gap: 36px;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: stretch; /* Make all cards automatically equal height */
+    }
+
+  .feature-link {
+    display: block;
+    max-width: 340px;   
+    min-width: 280px;
+    width: 100%;
+    height: 100%;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 32px;
+    transition: box-shadow 0.26s, transform 0.19s, filter 0.18s;
+    outline: none;
+  }
+  
+  .feature-block {
+    display: flex;
+    flex-direction: column;
+    height: 100%;    /* Allow to fill the parent container height */
+    min-height: 500px;
+    background: #fff;
+    border-radius: 32px;
+    padding: 0 0 22px 0;
+    transition: inherit;
+    box-shadow: 0 2px 9px 0 #0001;
+    overflow: hidden;
+    text-align: left;
+    min-width: 0;   /* OBS! Prevent flex from expanding and overflowing */
+  }
+  
+  .feature-block img {
+    width: 100%;
+    height: 380px;
+    object-fit: cover;
+    border-radius: 32px 32px 0 0;
+    display: block;
+    transition: filter 0.2s;
+    flex-shrink: 0;
+  }
+
+  .feature-block h3 {
+    font-size: 18px;
+    margin: 15px 0 10px;
+    color: #dc7612;
+    font-weight: 600;
+  }
+  
+  .feature-block p {
+    font-size: 15px;
+    margin-bottom: 15px;
+    color: #555;
+  }
+
+  /*Enhance card hover/focus effects */
+.feature-link:focus-visible,
+.feature-link:hover {
+  outline: none;
+}
+.feature-link:focus-visible .feature-block,
+.feature-link:hover .feature-block {
+  box-shadow: 0 8px 36px 0 #c67b0e45, 0 2px 8px 0 #0002;
+  transform: translateY(-4px) scale(1.03);
+  filter: brightness(1.09) saturate(1.12);
+}
+
+  
+  /* Footer */
+  .site-footer {
+    background-color: #000;
+    color: #fff;
+    padding: 60px 0;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.footer-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 40px;
+  }
+
+  .footer-left {
+    flex: 1.2;
+    min-width: 280px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .footer-social a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 12px;
+  }
+
+  .footer-logo img {
+    width: 160px;
+  }
+  
+  .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .newsletter-form input {
+    padding: 12px;
+    border-radius: 25px;
+    border: none;
+    width: 100%;
+  }
+  
+  .newsletter-form button {
+    padding: 10px 20px;
+    border-radius: 25px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    font-weight: bold;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  
+  .newsletter-form small {
+    font-size: 14px;
+    color: #ccc;
+  }
+  
+  .footer-links {
+    flex: 2;
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+  }
+  
+  .footer-column h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    font-weight: bold;
+  }
+  
+  .footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-column ul li {
+    margin-bottom: 8px;
+  }
+  
+  .footer-column ul li a {
+    color: #ccc;
+    text-decoration: none;
+  }
+  
+  .footer-column ul li a:hover {
+    color: #fff;
+  }
+
+/* =================== Explore Page =========================================================
+=====================================================================================================
+=================================================================================================== */
+
+/* ─── Breadcrumb Bar ───────────────────────────── */
+.breadcrumb-bar{
+    background:#fff;
+    border-top:1px solid #d1d1d1;
+    border-bottom:1px solid #d1d1d1;
+    width:100%;
+    font-family:'Montserrat',sans-serif;
+    font-size:14px;
+    line-height:42px;        /* control height */
+    padding-inline:18px;     /* Left and right padding */
+    box-sizing:border-box;
+  }
+  
+  .breadcrumb{
+    list-style:none;
+    margin:0;
+    padding:0;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;          /* Automatic line wrapping on narrow screens */
+  }
+  
+  .breadcrumb li{
+    display:flex;
+    align-items:center;
+    color:#666;
+    font-weight:500;
+    text-transform:uppercase;
+  }
+  
+  /* Arrow separator - pseudo-element */
+  .breadcrumb li+li::before{
+    content:"\f105";                     /* Font-Awesome “chevron-right” */
+    font-family:"Font Awesome 6 Free";
+    font-weight:900;
+    margin-right:10px;
+    color:#999;
+    font-size:11px;
+  }
+  
+  /* link style */
+  .breadcrumb a{
+    color:#111;
+    text-decoration:none;
+    transition:color .2s;
+  }
+  .breadcrumb a:hover{
+    color:#007bff;
+  }
+  
+  /* Current page (aria-current) emphasis */
+  .breadcrumb [aria-current="page"]{
+    color:#000;
+    font-weight:700;
+  }
+  /* ───end of Breadcrumb Bar ───────────────────────────── */
+
+/* HERO 部分 */
+.explore-hero {
+    position: relative;
+    color: #fff;
+    background: #101228;
+    min-height: 410px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    overflow: hidden;
+  }
+  
+  .explore-hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 1;
+    opacity: 0.73; /* Make sure the text is visible */
+    pointer-events: none;
+  }
+  
+  .explore-hero-content {
+    position: relative;
+    z-index: 2;
+    padding: 70px 8vw 60px 8vw;
+    max-width: 850px;
+  }
+  
+  .section-label {
+    font-size: 14px;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: #eee9;
+  }
+  
+  .explore-hero-content h1 {
+    font-size: 2.5rem;
+    line-height: 1.13;
+    font-weight: 800;
+    margin-bottom: 28px;
+    margin-top: 13px;
+  }
+  
+  .explore-hero-content p {
+    font-size: 1.13rem;
+    max-width: 600px;
+    margin-bottom: 34px;
+    color: #e7e7e7;
+  }
+  
+  .explore-categories {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .explore-categories li {
+    margin-bottom: 20px;
+    font-size: 1.18rem;
+  }
+  .category-title {
+    font-weight: 600;
+    color: #fff;
+    margin-right: 8px;
+  }
+  .category-desc {
+    color: #e4d10f;
+    margin-left: 4px;
+    font-weight: 400;
+  }
+  
+  /* ================= Section content structure =================== */
+  .explore-sections {
+    margin-top: 0;
+  }
+  
+  /* Common component color blocks and card layout */
+  .explore-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    min-height: 410px;
+  }
+  
+  /* orange background */
+  .orange-bg {
+    background: #dc7612;
+    color: #fff;
+  }
+  
+  /* Dark gray/blue background */
+  .dark-bg {
+    background: #181b25;
+    color: #fff;
+  }
+  
+  .explore-section-content, .explore-section-image {
+    flex: 1 1 49%;
+    min-width: 350px;
+    max-width: 580px;
+    padding: 50px 3vw 50px 7vw;
+  }
+  
+  .explore-section-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .explore-section-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-right: 7vw;
+    padding-left: 3vw;
+  }
+  
+  .explore-section-image img {
+    max-width: 100%;
+    max-height: 360px;
+    border-radius: 18px;
+    box-shadow: 0 6px 32px #0004;
+    display: block;
+  }
+  
+  /* Orange and black color blocks are arranged alternately reverse */
+  .explore-section.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .explore-section h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 22px;
+  }
+  .explore-section p {
+    font-size: 1rem;
+    color: #fffad7;
+    line-height: 1.5;
+    margin-bottom: 24px;
+  }
+  
+  /* Small feature line */
+  .explore-features-row {
+    display: flex;
+    gap: 28px;
+    margin-top: 19px;
+  }
+  .explore-feature {
+    background: #242638;
+    border-radius: 8px;
+    padding: 18px 24px;
+    color: #fec98b;
+    font-size: 1rem;
+    flex: 1 1 48%;
+  }
+  .explore-feature strong {
+    color: #fccb6e;
+    font-weight: 800;
+  }
+  
+  /* action button group */
+  .explore-actions {
+    margin-top: 18px;
+    display: flex;
+    gap: 16px;
+  }
+  
+  /* ============= Events & Mini-grid Section (Explore Our Exciting Hands-On…)
+ ============= */
+
+
+/* 1) Switch to a CSS Grid so each card sits in the exact same columns */
+.explore-events .explore-mini-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 3rem 2vw;               /* vertical breathing room */
+    background: #242638;             /* full dark background */
+  }
+  
+  /* 2) Enlarge each card container */
+  .explore-mini-grid .mini-feature {
+    background: #1a1c27;             /* slightly lighter so you can see the card */
+    border-radius: 16px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    /* bump up height so text area has room but typography stays */
+    min-height: 450px;
+    padding: 0;                      /* we’ll pad inside image + body separately */
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+    transition: transform .2s ease;
+  }
+  .explore-mini-grid .mini-feature:hover {
+    transform: translateY(-6px);
+  }
+  
+  /* 3) Expand the image region so it dominates the card */
+  .explore-mini-grid .mini-feature img {
+    width: 100%;
+    height: 220px;                   /* up from ~100px */
+    object-fit: cover;
+    display: block;
+    border-radius: 16px 16px 0 0;    /* match container corners */
+  }
+  
+  /* 4) Wrap the copy in its own padded area */
+  .explore-mini-grid .mini-feature > *:not(img) {
+    padding: 1.25rem 1.5rem;         /* generous text padding */
+    color: #fff;
+    flex: 1;                         /* push the button to the bottom */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* 5) Keep headings & paragraphs untouched, but add spacing */
+  .explore-mini-grid .mini-feature h3 {
+    margin: 0 0 0.75rem;
+    line-height: 1.3;
+  }
+  .explore-mini-grid .mini-feature p {
+    margin: 0 0 1.5rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+  }
+  
+  /* 6) Enlarge the Learn More button slightly */
+  .explore-mini-grid .mini-feature .btn {
+    align-self: start;
+    padding: 0.6rem 1.4rem;
+    font-size: 0.95rem;
+    border-radius: 999px;
+    background: #f4e041;
+    color: #111;
+    text-transform: none;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+    transition: background .2s, transform .2s;
+  }
+  .explore-mini-grid .mini-feature .btn:hover {
+    background: #ffe174;
+    transform: translateY(-2px);
+  }
+    
+/* 1) Only wrap the true text elements, not the button */
+.explore-mini-grid .mini-feature > :not(img):not(a) {
+    padding: 1.25rem 1.5rem;
+    color: #fff;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  
+  /* 2) Make the Learn More button “shrink‐to‐fit” and stick to the bottom */
+  .explore-mini-grid .mini-feature > a.btn {
+    flex: 0 0 auto;
+    display: inline-block;
+    margin: 0 1.5rem 1.5rem; /* horizontal matches text padding,  bottom spacing */
+    padding: 0.6rem 1.4rem;
+    background: #f4e041;
+    color: #111;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background .2s, transform .2s;
+  }
+  .explore-mini-grid .mini-feature > a.btn:hover {
+    background: #ffe174;
+    transform: translateY(-2px);
+  }
+  /* ──────────────────────────────────────────────────────────────────
+   Events & Mini-grid: full dark background + centered heading
+   ────────────────────────────────────────────────────────────────── */
+.explore-events {
+    background-color: #242638;    /* full-width dark background */
+    padding: 80px 0;              /* vertical padding (adjust as needed) */
+  }
+  
+  .explore-events .container {
+    max-width: 1200px;            /* match your other containers */
+    margin: 0 auto;               /* center it */
+    padding: 0 2vw;               /* small side gutters */
+  }
+  
+  .explore-events .events-intro {
+    color: #fff;
+    text-align: center;           /* center the two-line headline */
+    font-size: 2rem;              /* adjust size as needed */
+    line-height: 1.2;
+    margin: 0 0 48px;             /* space beneath the heading */
+  }
+  /* =========================================================================
+   responsibility design for explore page
+   ========================================================================= */
+@media (min-width: 1025px) {
+    /* 1. Force content on the left, image on the right */
+    .explore-section.orange-bg.reverse {
+      flex-direction: row !important;
+    }
+  
+    /* 2. Narrow the text column and tweak padding */
+    .explore-section.orange-bg.reverse .explore-section-content {
+      max-width: 440px;            /* Match prototype width */
+      padding: 50px 6vw 50px 4vw;  /* top / right / bottom / left */
+    }
+    .explore-section.orange-bg.reverse .explore-section-image {
+      padding: 50px 4vw 50px 6vw;
+    }
+  
+    /* 3. Section label styling (“EXPLORE”) */
+    .explore-section.orange-bg.reverse .section-label {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 0.875rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+    }
+  
+    /* Heading and paragraph adjustments */
+    .explore-section.orange-bg.reverse h2 {
+      font-size: 2.5rem;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .explore-section.orange-bg.reverse p {
+      font-size: 1rem;
+      margin-bottom: 1.5rem;
+      color: #fffad7;
+    }
+  
+    /* 4. Button styles: 
+         - Primary becomes an outlined button
+         - Secondary becomes plain text + arrow */
+    .explore-section.orange-bg.reverse .btn-primary {
+      background: transparent !important;
+      color: #111 !important;
+      border: 2px solid #111 !important;
+      box-shadow: none !important;
+      padding: 0.75em 1.5em;
+      border-radius: 20px;
+      font-weight: 600;
+    }
+    .explore-section.orange-bg.reverse .btn-secondary {
+      background: none !important;
+      color: #111 !important;
+      border: none !important;
+      padding: 0 !important;
+      font-weight: 400;
+    }
+    .explore-section.orange-bg.reverse .btn-secondary::after {
+      content: "\f105";                              /* Font Awesome chevron-right */
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      margin-left: 0.5em;
+    }
+  
+    /* Adjust spacing between buttons */
+    .explore-section.orange-bg.reverse .explore-actions {
+      margin-top: 1.5rem;
+      gap: 2rem;
+    }
+  }
+  @media (min-width: 901px) {
+    /* when .reverse is present, swap to a 40/60 layout */
+    .explore-section.orange-bg.reverse .explore-section-content {
+      flex: 0 0 40%;       /* text column is 40% wide */
+      max-width: 40%;
+    }
+    .explore-section.orange-bg.reverse .explore-section-image {
+      flex: 0 0 60%;       /* image column is 60% wide */
+      max-width: 60%;
+      padding-left: 4vw;   /* add a bit of breathing room */
+    }
+  }  
+
+
+
+/* =================== SignUp Page  =========================================================
+=====================================================================================================
+=================================================================================================== */
+
+
+/* =============================
+   1. BREADCRUMB BAR
+   ============================= */
+   .breadcrumb-bar {
+    background: #fff;
+    border-top: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+    width: 100%;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    line-height: 42px;
+  }
+  .breadcrumb-bar .breadcrumb {
+    display: flex;
+    gap: 8px;
+    list-style: none;
+    margin: 0;
+    padding: 0 2vw;
+  }
+  .breadcrumb-bar .breadcrumb li {
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #666;
+  }
+  .breadcrumb-bar .breadcrumb li + li::before {
+    content: "\f105";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    margin-right: 8px;
+    color: #999;
+    font-size: 11px;
+  }
+  .breadcrumb-bar .breadcrumb a {
+    color: #111;
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .breadcrumb-bar .breadcrumb a:hover {
+    color: #007bff;
+  }
+  .breadcrumb-bar .breadcrumb [aria-current="page"] {
+    color: #000;
+    font-weight: 700;
+  }
+  
+  /* =============================
+     2. SIGN-UP HERO
+     ============================= */
+  .sign-up-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 520px;
+    color: #fff;
+  }
+
+  .sign-up-hero .hero-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .sign-up-hero .hero-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+/* —— black mask —— */
+.sign-up-hero .hero-bg::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);  /* 40% black layout */
+  z-index: 2;
+}
+
+  .sign-up-hero .hero-content {
+    position: relative;
+    z-index: 3;
+    color: #fff; 
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6); /* add readability */    
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 100px 20px;
+    text-align: center;
+  }
+  .sign-up-hero .hero-content h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    text-shadow:0 2px 12px rgba(0,0,0,0.6);
+  }
+  .sign-up-hero .hero-content p {
+    font-size: 1rem;
+    margin-bottom: 32px;
+    text-shadow: 0 1px 8px rgba(0,0,0,0.5);
+  }
+  /* sign up form */
+  .sign-up-hero .sign-up-form {
+    display: inline-flex;
+    align-items: stretch;
+    gap: 0.5rem;
+    margin-bottom:16px;
+  }
+  .sign-up-hero .sign-up-form input[type="email"] {
+    flex: 1;
+    padding: 0.75em 1em;
+    font-size: 1rem;
+    border: 2px solid #fff;
+    border-radius: 999px;
+    background: transparent;
+    color: #fff;
+    outline: none;
+    transition: border-color .2s;
+  }
+  .sign-up-hero .sign-up-form input::placeholder {
+    color: rgba(255,255,255,0.7);
+  }
+  .sign-up-hero .sign-up-form .btn-primary {
+    border-radius: 0 4px 4px 0;
+    padding: 12px 24px;
+  }
+
+  .sign-up-hero .sign-up-form input[type="email"]:focus {
+    border-color: #f4e041;
+  }
+
+  .sign-up-hero .form-note {
+    margin-top: 12px;
+    font-size: 0.75rem;
+    color: rgba(255,255,255,0.8);
+  }
+  .sign-up-hero .form-note a {
+    color: #f4e041;
+    text-decoration: underline;
+  }
+
+
+.sign-up-hero .sign-up-form button {
+    padding: 0 1.5em;
+    background: #ffffff;
+    color: #111;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 999px;
+    /* box-shadow: 0 4px 12px rgba(0,0,0,0.2); */
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.15), 0 6px 16px rgba(0,0,0,0.25);
+  }
+
+  .sign-up-hero .sign-up-form button:hover {
+    background: #ffe053;
+    transform: translateY(-2px);
+  }
+  /* —— form text —— */
+  .sign-up-hero .form-note {
+    font-size: 0.875rem;
+    color: rgba(255,255,255,0.85);
+  }
+  
+  .sign-up-hero .form-note a {
+    color: #f4e041;
+    text-decoration: underline;
+  }
+
+  /* =============================
+     3. ADVENTURE STEPS
+     ============================= */
+  .adventure {
+    background: #dc7612;
+    color: #fff;
+    text-align: center;
+    padding: 60px 2vw;
+  }
+  .adventure .adventure-intro {
+    max-width: 700px;
+    margin: 0 auto 40px;
+  }
+  .adventure .adventure-intro img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 16px;
+  }
+  .adventure .adventure-intro h2 {
+    font-size: 2.5rem;
+    margin-bottom: 12px;
+  }
+  .adventure .adventure-intro p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  .adventure .adventure-steps {
+    display: flex;
+    gap: 24px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+  }
+  .adventure .step {
+    background: #fff;
+    color: #111;
+    border-radius: 12px;
+    overflow: hidden;
+    max-width: 300px;
+    flex: 1 1 280px;
+    text-align: left;
+  }
+  .adventure .step img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+  }
+  .adventure .step h3 {
+    font-size: 1.25rem;
+    margin: 16px;
+  }
+  .adventure .step p {
+    font-size: 1rem;
+    margin: 0 16px 16px;
+  }
+  .adventure .adventure-cta {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+  }
+  .adventure .btn-outline {
+    display: inline-block;
+    border: 2px solid #111;
+    color: #111;
+    background: transparent;
+    border-radius: 20px;
+    padding: 10px 24px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .adventure .btn-outline:hover {
+    background: rgba(0,0,0,0.1);
+  }
+  .adventure .btn-link {
+    display: inline-flex;
+    align-items: center;
+    color: #111;
+    text-decoration: none;
+    font-weight: 600;
+  }
+  .adventure .btn-link .arrow {
+    margin-left: 4px;
+    font-size: 1.2rem;
+  }
+  
+  /* =============================
+     4. TESTIMONIAL
+     ============================= */
+  .testimonial {
+    background: #181b25;
+    color: #fff;
+    text-align: center;
+    padding: 60px 2vw;
+  }
+  .testimonial .stars {
+    color: #f4e041;
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  .testimonial blockquote {
+    font-size: 1.25rem;
+    font-style: normal;
+    max-width: 800px;
+    margin: 0 auto 24px;
+    line-height: 1.5;
+  }
+  .testimonial .author {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+  .testimonial .author img {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  .testimonial .author cite {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ccc;
+  }
+  
+  /* =============================
+     5. RESPONSIVE
+     ============================= */
+  @media (max-width: 768px) {
+    .sign-up-hero .hero-content { padding: 60px 1.5vw 40px; }
+    .adventure .adventure-steps { gap: 16px; }
+    .adventure .step { flex: 1 1 100%; max-width: 100%; }
+    .testimonial blockquote { font-size: 1.1rem; }
+  }
+
+/* =================== Culture Night Page  =========================================================
+=====================================================================================================
+=================================================================================================== */
+  /* ================= Culture Night Hero ================= */
+.culture-night-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: 500px;
+  }
+  .culture-night-hero .hero-bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.5);
+  }
+  .culture-night-hero .hero-content {
+    position: relative;
+    color: var(--white);
+    text-align: left;
+    padding: 4rem 2rem;
+  }
+  .culture-night-hero h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .culture-night-hero .subhead {
+    font-size: var(--text-medium);
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .culture-night-hero .hero-cta .btn {
+    margin-right: 1rem;
+  }
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+  }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    padding: 0.75rem 1.5rem;
+    border: 2px solid var(--white);
+    border-radius: var(--radius);
+  }
+  .btn-primary,
+.btn-outline {
+  text-decoration: none;
+}
+  .btn-primary:hover { background: #1f3fdc; }
+  .btn-outline:hover { background: rgba(255,255,255,0.2); }
+  
+  /* ================= Feature Section ================= */
+  .feature-section {
+    padding: 4rem 0;
+    background: var(--black);
+    color: var(--white);
+  }
+  .feature-section .container {
+    display: flex;
+    align-items: center;
+    gap: var(--gap);
+  }
+  .feature-section .feature-intro {
+    display: flex;
+    align-items: center;
+    gap: 2rem;              
+  }
+  /* image 60% */
+.feature-section .feature-image {
+    flex: 0 0 60%;
+  }
+  
+  /* right text 40% */
+  .feature-section .feature-text {
+    flex: 1;
+  }
+  .feature-section .feature-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 12px;
+    object-fit: cover; 
+    /* max-width: 600px;
+    border-radius: var(--radius); */
+  }
+  .feature-text h2 {
+    font-size: var(--text-large);
+    margin-bottom: 1rem;
+  }
+  .feature-text p {
+    font-size: var(--text-medium);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+  }
+  .feature-highlights {
+    display: flex;
+    gap: 2rem;
+  }
+  .feature-highlights strong {
+    display: block;
+    font-size: var(--text-small);
+    margin-bottom: 0.25rem;
+  }
+  .feature-highlights p {
+    font-size: var(--text-small);
+    margin: 0;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  /* ================= Explore the Wonders ================= */
+  .explore-wonders {
+    padding: 4rem 0;
+    background: var(--black);
+    color: var(--white);
+  }
+  .explore-wonders .section-title {
+    font-size: var(--text-large);
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+  .explore-wonders .section-sub {
+    font-size: var(--text-medium);
+    text-align: center;
+    color: rgba(255,255,255,0.8);
+    margin-bottom: 2rem;
+  }
+  .feature-cards {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: var(--gap);
+  }
+  .card {
+    background: #222;
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .card-large {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .card-content {
+    padding: 1.5rem;
+  }
+  .card h3 {
+    margin: 0;
+    font-size: var(--text-small);
+    font-weight: 600;
+    color: var(--white);
+  }
+  .card-title {
+    font-size: 1.25rem;
+    margin: 0.5rem 0;
+    color: var(--white);
+  }
+  .card-desc {
+    font-size: var(--text-small);
+    line-height: 1.4;
+    color: rgba(255,255,255,0.8);
+  }
+  
+  /* ================= Lunar Phase Banner ================= */
+  .lunar-phases {
+    padding: 2rem 0;
+    background: var(--black);
+  }
+  .lunar-phases img {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: var(--radius);
+  }
+  
+  /* ================= Natural History Exhibit ================= */
+  .history-exhibit {
+    padding: 4rem 0;
+    background: var(--black);
+    color: var(--white);
+  }
+  .history-content {
+    display: flex;
+    gap: var(--gap);
+    align-items: center;
+  }
+  .history-exhibit h2 {
+    font-size: var(--text-large);
+    margin-bottom: 1rem;
+  }
+  .history-exhibit p {
+    font-size: var(--text-medium);
+    margin-bottom: 1.5rem;
+    color: rgba(255,255,255,0.9);
+  }
+  .history-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .history-features li {
+    margin-bottom: 1rem;
+  }
+  .history-features strong {
+    display: block;
+    font-size: var(--text-small);
+    margin-bottom: 0.25rem;
+  }
+  .history-features p {
+    font-size: var(--text-small);
+    color: rgba(255,255,255,0.8);
+  }
+  .history-image img {
+    width: 100%;
+    border-radius: var(--radius);
+  }
+  
+ /* ================= Schedule ================= */
+.schedule {
+    background-color: var(--orange);
+    padding: 4rem 0 2rem;
+  }
+  
+  /* Intro */
+  .schedule-intro {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  .schedule-intro img {
+    width: 60px;
+    margin-bottom: .5rem;
+  }
+  .schedule-intro h2 {
+    font-size: 2rem;
+    margin-bottom: .5rem;
+    color: #111;
+  }
+  .schedule-intro p {
+    font-size: var(--text-medium);
+    color: rgba(255,255,255,0.9);
+  }
+  
+  /* 列表外层容器（用于居中） */
+  .schedule > .container:last-child {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  /* 列表 itself */
+  .schedule-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    border-top: 2px solid rgba(255,255,255,0.3);
+  }
+  
+  /* 公共：标签小块 */
+  .schedule-list .tags em {
+    display: inline-block;
+    background: #fff;
+    color: #000;
+    padding: .15rem .5rem;
+    margin-right: .25rem;
+    border-radius: 4px;
+    font-style: normal;
+    font-size: .75rem;
+  }
+  
+  /* 公共：按钮 */
+  .btn-outline-sm {
+    display: inline-block;
+    padding: .4rem .8rem;
+    border: 2px solid #000;
+    border-radius: var(--radius);
+    color: #000;
+    background: transparent;
+    font-size: .8rem;
+    text-decoration: none;
+  }
+  .btn-outline-sm:hover {
+    background: rgba(0,0,0,0.1);
+  }
+  
+  /* ================= responsibility design ================= */
+  
+/* ────────────── mobile：≤768px ────────────── */
+@media (max-width: 768px) {
+    .schedule-list {
+      margin: 0 auto;
+      max-width: 600px;         /* mobile */
+    }
+    .schedule-list li {
+      display: grid;
+      grid-template-columns: min-content 1fr;
+      grid-template-rows:
+        auto   /* time + title */
+        auto   /* tag */
+        auto   /* role + 地点 */
+        auto;  /* button */
+      grid-template-areas:
+        "time    title"
+        "tags    tags"
+        "role    location"
+        "btn     btn";
+      gap: 0.5rem 1rem;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    .schedule-list .time         { grid-area: time; }
+    .schedule-list .event-title  { grid-area: title; }
+    .schedule-list .tags         { grid-area: tags;    }
+    .schedule-list .role         { grid-area: role;    }
+    .schedule-list .location     { grid-area: location;}
+    .schedule-list .btn-outline-sm {
+      grid-area: btn;
+      justify-self: start;
+      width: 100%;
+    }
+  }
+  
+  /* ────────────── Tablet：769px–1024px ────────────── */
+@media (min-width: 769px) and (max-width: 1024px) {
+    .schedule-list {
+      margin: 0 auto;
+      max-width: 900px;   /* mac width  */
+    }
+  
+    .schedule-list li {
+      display: grid;
+      /* three layout distribution */
+      grid-template-columns: 
+        min-content    /* column1:time adaptive */
+        1fr            /* column2:title+label expand to fill the remaining space */
+        min-content;   /* 列3：button adaptive */
+      /* Four-row layout: the first row is time + title + button; the second row is
+       label that fills the entire column 2; the third row is role; the fourth row is location */
+      grid-template-rows:
+        auto  
+        auto  
+        auto  
+        auto; 
+      grid-template-areas:
+        "time    title      btn"
+        ".       tags       .  "
+        ".       role       .  "
+        ".       location   .  ";
+      gap: 0.5rem 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+  
+    .schedule-list .time        { grid-area: time;     justify-self: start; }
+    .schedule-list .event-title { grid-area: title;    justify-self: start; }
+    .schedule-list .tags        { grid-area: tags;     justify-self: start; }
+    .schedule-list .role        { grid-area: role;     justify-self: start; }
+    .schedule-list .location    { grid-area: location; justify-self: start; }
+  
+    .schedule-list .btn-outline-sm {
+      grid-area: btn;
+      justify-self: end;
+      padding: 0.4rem 0.8rem;
+    }
+  }
+  
+  /* ────────────── Desktop：≥1025px ────────────── */
+  @media (min-width: 1025px) {
+    .schedule-list {
+      margin: 0 auto;
+      max-width: 1200px;  /* Desktop  */
+    }
+    .schedule-list li {
+      display: grid;
+      grid-template-columns:
+        min-content  /* time */
+        2fr          /* title */
+        1fr          /* tag */
+        1fr          /* role */
+        1fr          /* location */
+        min-content; /* button */
+      align-items: center;
+      gap: 0 2rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid rgba(255,255,255,0.2);
+    }
+    .schedule-list .time        { /* Grid automatically arranges columns */ }
+    .schedule-list .event-title { }
+    .schedule-list .tags        { }
+    .schedule-list .role        { }
+    .schedule-list .location    { }
+    .schedule-list .btn-outline-sm {
+      justify-self: end;
+    }
+  }  
