@@ -22,8 +22,11 @@
       
 </head>
 <body>
+
     <!-- ================= Header & Navigation ================= -->
-    <header class="site-header">
+    <a class="skip-link" href="#main">skip to content</a> 
+    <!-- 👆 add an accessibility link to the main content (modern websites) -->
+    <header class="site-header">  
         <div class="container header-top">
           <!-- logo -->
           <a href="index.html" class="logo" aria-label="Home">
@@ -115,9 +118,10 @@
       </header>
     <!-- ================= End Header & Navigation ============== -->
 
-    <main>
+    <main id="main">
         <!-- ================= Hero Banner ======================= -->
-        <section class="hero-banner">
+        <section class="hero-banner section--none"> 
+                                 <!-- 👆Consistent section padding was applied using shared utility classes -->
             <img src="./images/site-enter.jpg" alt="Science Museum Building" class="hero-image">
             <div class="hero-content">
                 <h1>Explore the Wonders of Science Together!</h1>
@@ -125,7 +129,7 @@
                     Welcome to our interactive science museum, where curiosity meets fun! Discover hands-on exhibits and exciting activities designed for families and young explorers.
                 </p>
                 <div class="hero-buttons">
-                    <a href="/Explore.html" class="btn btn-primary">Explore</a>
+                    <a href="/explore.html" class="btn btn-primary">Explore</a>
                     <a href="/signup.html" class="btn btn-secondary">Sign Up</a>
                 </div>
             </div>
@@ -133,17 +137,20 @@
         <!-- ================= End Hero Banner =================== -->
 
         <!-- ================= Culture Night Highlight =========== -->
-        <section class="culture-night">
+        <section class="culture-night section-tight">
+                                    <!-- 👆Consistent section padding was applied using shared utility classes -->
             <div class="culture-night-bg">
             </div>
-            <a href="culture-night.html" class="culture-night-button" aria-label="Go to Culture Night page">
+            <a href="./culturenight.html" class="culture-night-button" aria-label="Go to Culture Night page">
                 All about Culture Night
               </a>
         </section>
         <!-- ============ End Culture Night Highlight ============ -->
 
         <!-- ==== Interactive Science Experience Promo =========== -->
-        <section class="interactive-experience">
+        <section class="interactive-experience section">
+                                             <!-- 👆Consistent section padding was applied using shared utility classes -->
+          
             <div class="experience-graphic">
                 <img src="./images/sketch-lab-vintage.jpg" alt="Science Instruments Graphic">
             </div>
@@ -157,7 +164,8 @@
         <!-- == End Interactive Science Experience Promo ========= -->
 
         <!-- ==== Educational Programs / Features Section ======== -->
-        <section class="educational-programs">
+        <section class="educational-programs section">
+                                          <!-- 👆Consistent section padding was applied using shared utility classes -->
             <div class="container">
                 <h2>Engaging Educational Programs for All Ages</h2>
                 <p>

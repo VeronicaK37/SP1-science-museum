@@ -20,6 +20,21 @@
     margin: 0 auto;
     padding: 0 2vw;
   }
+
+  .skip-link {
+    position:absolute;
+    left:-999px;
+    top:12px;
+    background:#fff;
+    color:#111;
+    padding:10px 14px;
+    border-radius:10px;
+    z-index: 9999;
+  }
+  .skip-link:focus {
+    left: 12px;
+  }
+
   
   /* ──────────────────────────────────────────────────────────────────
      2. VARIABLES
@@ -371,10 +386,21 @@
     .header-actions { order: 3; margin: 0; }
   }
 
+  /* =================Add 👇 Section spacing system ================= */ 
+.section{
+  padding: 72px 0;
+}
+.section--tight{
+  padding: 48px 0;
+}
+.section--none{
+  padding: 0;
+}
+
   /* ──────────────────────────────────────────────────────────────────
      6. HERO BANNER
      ────────────────────────────────────────────────────────────────── */
-  .hero-banner {
+     .hero-banner {
     position: relative;
     color: white;
     min-height: 650px;
@@ -416,15 +442,15 @@
     padding: 0 34px;
   }
   .hero-content h1 {
-    font-size: 72px;
+    font-size: clamp(2rem, 5vw, 4.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
     font-weight: 900;
-    line-height: 1.08;
     margin-bottom: 22px;
     text-shadow: 0 9px 30px rgba(0,0,0,.19);
-    letter-spacing: -1.5px;
   }
   .hero-content p {
-    font-size: 20px;
+    font-size: clamp(1rem, 1.6vw, 1.25rem);
     font-weight: 400;
     margin-bottom: 36px;
     text-shadow: 0 3px 10px rgba(0,0,0,.13);
@@ -906,12 +932,7 @@
       padding: 10px 20px;
       gap: 15px;
     }
-    .hero-content h1, .explore-hero-content h1 {
-      font-size: 36px;
-    }
-    .hero-content p, .explore-hero-content p {
-      font-size: 15px;
-    }
+
     .hero-banner, .hero-banner img.hero-image, .explore-hero-bg {
       min-height: 300px;
     }
@@ -972,9 +993,6 @@
   }
   /* Below 600px: Ultra-compact mobile version */
   @media (max-width: 600px) {
-    .hero-content h1, .explore-hero-content h1 {
-      font-size: 1.1rem;
-    }
     .mini-feature img {
       height: 48vw;
       max-height: 104px;
@@ -2154,13 +2172,14 @@ html, body {
   .culture-night-hero .hero-cta .btn {
     margin-right: 1rem;
   }
-  .btn-primary {
+
+  .culture-night-hero .btn-primary { 
     background: var(--blue);
     color: #fff;
     padding: 0.75rem 1.5rem;
     border-radius: var(--radius);
   }
-  .btn-outline {
+  .culture-night-hero .btn-outline {
     background: transparent;
     color: var(--white);
     padding: 0.75rem 1.5rem;
@@ -2171,8 +2190,8 @@ html, body {
 .btn-outline {
   text-decoration: none;
 }
-  .btn-primary:hover { background: #1f3fdc; }
-  .btn-outline:hover { background: rgba(255,255,255,0.2); }
+  .culture-night-hero .btn-primary:hover { background: #1f3fdc; }
+  .culture-night-hero .btn-outline:hover { background: rgba(255,255,255,0.2); }
   
   /* ================= Feature Section ================= */
   .feature-section {
