@@ -1,9 +1,64 @@
-# SP1-science-museum
+# Project Title
 
 Community Science Museum Project
 Design an engaging, informative, and user-friendly website for a new interactive science museum that is opening in your city.
 
-Brief
+## Features
+
+- Semantic HTML structure
+- Responsive design using Flexbox and Grid
+- Reusable CSS components
+- Product detail pages 
+
+## Prerequisites
+
+- Node.js (v20+)
+- npm
+
+## Getting Started
+
+### Installation
+
+```bash
+npm install
+```
+
+### Running the project
+
+```bash
+npm run dev
+```
+
+### Running tests
+
+```bash
+npm run test
+```
+
+## Environment Variables
+
+Create a `.env` file in the root directory:
+
+```bash
+API_KEY=your-api-key-here
+BASE_URL=https://example.com/api
+```
+
+## Available Scripts
+
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run test` - Run tests
+- `npm run lint` - Run ESLint
+
+## Technologies
+
+- HTML
+- CSS
+- ESLint
+- Prettier
+
+## Brief
 An interactive science museum called "Community Science Museum" is about to open in your town/city. Its core target audience is primary and secondary school students (7-15 years old) and families with young children. The website should be informative and engaging to encourage visitors to visit the museum. It should also have a responsive design and be easy to operate on a variety of devices. Peer/teacher review is recommended.
 You have been provided with resources such as text and images (see links under "Resources"). You must decide how to use these resources in terms of presentation, hierarchy, and design. If any resource is too large, remember to optimize the file size to ensure smooth loading and a perfect user experience. You can choose to do this alone or in a team of two.
 
@@ -61,3 +116,8 @@ A link to a prototype style or design for your project.
 A link to the project planning board and Github repository.
 
 A record of how your contributions and those of your team members (if this is a team project) have been used.
+
+## Author
+
+VeronicaK37
+# SP1-science-museum
